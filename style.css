@@ -341,3 +341,97 @@ footer { text-align: center; color: var(--muted); padding: 32px 20px 54px; }
 @media (max-width: 680px) {
   .dynamic-toolbar { grid-template-columns: 1fr; }
 }
+
+/* v8: fixed interactive landscape controls and reliable legends */
+.compact-landscape-controls { margin-top: -18px; }
+.filter-only-toolbar {
+  display: grid;
+  grid-template-columns: minmax(260px, 1.4fr) repeat(5, minmax(145px, 1fr)) auto auto;
+  gap: 10px;
+  align-items: center;
+}
+.landscape-headline-v8 {
+  display: grid;
+  grid-template-columns: minmax(260px, 1fr) auto;
+  gap: 20px;
+  align-items: start;
+}
+.axis-picker-card {
+  display: grid;
+  grid-template-columns: minmax(190px, 1fr) minmax(190px, 1fr);
+  gap: 10px;
+  align-items: end;
+  padding: 10px;
+  border: 1px solid #dbe7f3;
+  background: linear-gradient(180deg, #ffffff, #f8fbff);
+  border-radius: 16px;
+  box-shadow: 0 10px 24px rgba(15, 23, 42, .05);
+}
+.axis-picker-card label {
+  display: grid;
+  gap: 5px;
+  color: #475569;
+  font-size: .72rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+}
+.axis-picker-card select { width: 100%; min-height: 42px; }
+.legend-grid-v8 {
+  display: grid;
+  grid-template-columns: minmax(250px, .85fr) minmax(420px, 1.15fr);
+  gap: 12px;
+  margin: 12px 0 14px;
+}
+.legend-card-v8 {
+  border: 1px solid #e2e8f0;
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 10px 12px;
+}
+.legend-card-v8 .legend-title {
+  color: #64748b;
+  font-size: .72rem;
+  font-weight: 900;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+.legend-card-v8 .legend,
+.legend-card-v8 .shape-legend {
+  justify-content: flex-start;
+  gap: 8px;
+}
+.legend-card-v8 .legend-item {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 999px;
+  padding: 5px 8px;
+  color: #334155;
+  font-size: .8rem;
+  font-weight: 800;
+}
+.legend-card-v8 .legend-dot {
+  width: 12px;
+  height: 12px;
+  display: inline-block;
+  border-radius: 999px;
+  box-shadow: 0 0 0 2px #fff, 0 0 0 3px #cbd5e1;
+}
+.legend-card-v8 .legend-shape { width: 18px; height: 18px; flex: 0 0 auto; }
+.legend-shape-mark { vector-effect: non-scaling-stroke; }
+.landscape-point { vector-effect: non-scaling-stroke; }
+.improved-plot-wrap { min-height: 680px; height: min(78vh, 820px); }
+#landscapePlot { overflow: visible; }
+@media (max-width: 1280px) {
+  .filter-only-toolbar { grid-template-columns: 1fr 1fr; }
+  .filter-only-toolbar input { grid-column: 1 / -1; }
+  .landscape-headline-v8 { grid-template-columns: 1fr; }
+  .axis-picker-card { max-width: 620px; }
+  .legend-grid-v8 { grid-template-columns: 1fr; }
+}
+@media (max-width: 680px) {
+  .filter-only-toolbar, .axis-picker-card { grid-template-columns: 1fr; }
+  .improved-plot-wrap { min-height: 540px; overflow-x: auto; }
+  #landscapePlot { min-width: 860px; }
+}

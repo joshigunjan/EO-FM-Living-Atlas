@@ -20,24 +20,14 @@
     <div class="hero-content">
       <p class="eyebrow">Interactive model landscape</p>
       <h1>Explore EO foundation models through configurable axes and task filters.</h1>
-      <p class="subtitle">Choose what the x- and y-axes represent, filter by modality, downstream task, architecture, or modelling paradigm, and inspect each model with its paper, code, weights, and project links.</p>
+      <p class="subtitle">The default view maps modality complexity against downstream-task coverage. Use the axis controls inside the chart card to change the comparison.</p>
     </div>
   </header>
 
   <main class="container">
-    <section class="panel controls-panel landscape-controls">
-      <div class="axis-control-grid">
-        <label class="control-label">X-axis
-          <select id="xMetric"></select>
-        </label>
-        <label class="control-label">Y-axis
-          <select id="yMetric"></select>
-        </label>
-        <label class="control-label wide">Search
-          <input id="landscapeSearch" type="search" placeholder="Search model, modality, task, architecture...">
-        </label>
-      </div>
-      <div class="toolbar landscape-toolbar dynamic-toolbar">
+    <section class="panel controls-panel landscape-controls compact-landscape-controls">
+      <div class="toolbar landscape-toolbar dynamic-toolbar filter-only-toolbar">
+        <input id="landscapeSearch" type="search" placeholder="Search model, modality, task, architecture...">
         <select id="landscapeOpen"><option value="">All openness</option></select>
         <select id="landscapeModality"><option value="">All modalities</option></select>
         <select id="landscapeTask"><option value="">All downstream tasks</option></select>
@@ -46,23 +36,37 @@
         <label class="check"><input id="showLabels" type="checkbox"> Show labels</label>
         <button id="landscapeReset">Reset</button>
       </div>
-      <div id="axisHint" class="hint">Change the axes to compare modality breadth, downstream-task coverage, architecture breadth, openness, or link availability. Click any point to inspect the model.</div>
+      <div id="axisHint" class="hint">Default view: x-axis = modality complexity tier; y-axis = downstream-task coverage. Click any point to inspect the model.</div>
     </section>
 
     <section class="landscape-layout improved-landscape-layout">
       <div class="panel landscape-panel improved-landscape-panel">
-        <div class="table-headline landscape-headline">
+        <div class="table-headline landscape-headline landscape-headline-v8">
           <div>
             <h2>Foundation-model landscape</h2>
             <p id="landscapeCount" class="muted"></p>
           </div>
-          <div class="legend-stack">
+          <div class="axis-picker-card" aria-label="Landscape axis controls">
+            <label>X-axis
+              <select id="xMetric"></select>
+            </label>
+            <label>Y-axis
+              <select id="yMetric"></select>
+            </label>
+          </div>
+        </div>
+
+        <div class="legend-grid-v8">
+          <div class="legend-card-v8">
             <div class="legend-title">Color: release / availability</div>
             <div class="legend" id="landscapeLegend"></div>
+          </div>
+          <div class="legend-card-v8">
             <div class="legend-title">Shape: modelling paradigm</div>
             <div class="shape-legend" id="familyLegend"></div>
           </div>
         </div>
+
         <div id="plotWrap" class="plot-wrap improved-plot-wrap">
           <svg id="landscapePlot" role="img" aria-label="Configurable scatter plot of EO foundation models"></svg>
         </div>
@@ -77,7 +81,7 @@
 
     <section class="panel">
       <h2>How to read this map</h2>
-      <p>The landscape is exploratory, not a ranking. Axis values and marker styles are derived from the catalogue fields: modality tags, downstream-task tags, architecture tags, openness, source links, and the recorded modelling paradigm. Use the task filter to focus on a subset, for example land-cover mapping, change detection, captioning, or regression.</p>
+      <p>The landscape is exploratory, not a ranking. Colors encode release or availability status. Shapes encode the dominant modelling paradigm. The x- and y-axes can be changed interactively to compare modality breadth, modality complexity, task coverage, architecture breadth, openness, or source-link availability.</p>
     </section>
   </main>
 

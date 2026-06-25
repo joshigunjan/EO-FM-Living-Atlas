@@ -26,6 +26,24 @@ const L = {
   details: document.getElementById("landscapeDetails"),
   axisHint: document.getElementById("axisHint")
 };
+const OPENNESS_COLORS = {
+  open: "#16a34a",
+  partial: "#f59e0b",
+  closed: "#ef4444",
+  unknown: "#64748b"
+};
+
+function opennessKey(d) {
+  const o = String(d.openness || d.openness_label || "unknown").toLowerCase();
+  if (o.includes("open") && !o.includes("partial")) return "open";
+  if (o.includes("partial")) return "partial";
+  if (o.includes("closed")) return "closed";
+  return "unknown";
+}
+
+function pointColor(d) {
+  return OPENNESS_COLORS[opennessKey(d)] || OPENNESS_COLORS.unknown;
+}
 
 function uniq(arr) {
   return [...new Set(arr.filter(Boolean))].sort((a, b) => a.localeCompare(b));
@@ -290,22 +308,26 @@ function applyFilters() {
 }
 
 function opennessClass(d) {
-  return `point-${(d.openness || "unknown").toLowerCase()}`;
+  return `point-${opennessKey(d)}`;
 }
 
 function renderLegendShape(key, size = 14) {
   const f = FAMILIES[key] || FAMILIES.transformer_masked;
   const cx = 12, cy = 12, r = size / 2;
-  return `<svg class="legend-shape" viewBox="0 0 24 24" aria-hidden="true">${shapeSvg(f.shape, cx, cy, r, "legend-shape-mark")}</svg>`;
+  return `<svg class="legend-shape" viewBox="0 0 24 24" aria-hidden="true">${shapeSvg(f.shape, cx, cy, r, "legend-shape-mark", "#ffffff", "#334155", "2.3")}</svg>`;
 }
 
 function renderLegend() {
-  L.legend.innerHTML = [
-    ["open", "Open weights / code"],
-    ["partial", "Partial release"],
-    ["closed", "Closed / unavailable"],
+  const colorItems = [
+    ["open", "Open"],
+    ["partial", "Partial"],
+    ["closed", "Closed"],
     ["unknown", "Unknown"]
-  ].map(([cls, label]) => `<span class="legend-item"><span class="legend-dot point-${cls}"></span>${label}</span>`).join("");
+  ];
+  L.legend.innerHTML = colorItems.map(([key, label]) =>
+    `<span class="legend-item"><span class="legend-dot" style="background:${OPENNESS_COLORS[key]}; border-color:${OPENNESS_COLORS[key]}"></span>${label}</span>`
+  ).join("");
+
   L.familyLegend.innerHTML = Object.entries(FAMILIES).map(([key, f]) =>
     `<span class="legend-item family-legend-item">${renderLegendShape(key)}${escapeHtml(f.short)}</span>`
   ).join("");
@@ -369,26 +391,36 @@ function starPoints(cx, cy, outer, inner, count = 5) {
   return polygonPoints(pts);
 }
 
-function shapeSvg(shape, cx, cy, r, cls) {
+function svgStyle(fill, stroke, strokeWidth) {
+  const parts = [];
+  if (fill) parts.push(`fill:${fill}`);
+  if (stroke) parts.push(`stroke:${stroke}`);
+  if (strokeWidth) parts.push(`stroke-width:${strokeWidth}`);
+  return parts.length ? ` style="${parts.join(';')}"` : "";
+}
+
+function shapeSvg(shape, cx, cy, r, cls = "", fill = "", stroke = "", strokeWidth = "") {
+  const classAttr = cls ? ` class="${cls}"` : "";
+  const styleAttr = svgStyle(fill, stroke, strokeWidth);
   if (shape === "square") {
-    const s = r * 1.55;
-    return `<rect x="${(cx - s / 2).toFixed(1)}" y="${(cy - s / 2).toFixed(1)}" width="${s.toFixed(1)}" height="${s.toFixed(1)}" rx="${(r * 0.16).toFixed(1)}" class="${cls}"></rect>`;
+    const s = r * 1.65;
+    return `<rect x="${(cx - s / 2).toFixed(1)}" y="${(cy - s / 2).toFixed(1)}" width="${s.toFixed(1)}" height="${s.toFixed(1)}" rx="${(r * 0.12).toFixed(1)}"${classAttr}${styleAttr}></rect>`;
   }
   if (shape === "diamond") {
-    return `<polygon points="${polygonPoints([[cx, cy - r], [cx + r, cy], [cx, cy + r], [cx - r, cy]])}" class="${cls}"></polygon>`;
+    return `<polygon points="${polygonPoints([[cx, cy - r], [cx + r, cy], [cx, cy + r], [cx - r, cy]])}"${classAttr}${styleAttr}></polygon>`;
   }
   if (shape === "triangle") {
-    return `<polygon points="${polygonPoints([[cx, cy - r], [cx + r * 0.95, cy + r * 0.72], [cx - r * 0.95, cy + r * 0.72]])}" class="${cls}"></polygon>`;
+    return `<polygon points="${polygonPoints([[cx, cy - r], [cx + r * 0.98, cy + r * 0.78], [cx - r * 0.98, cy + r * 0.78]])}"${classAttr}${styleAttr}></polygon>`;
   }
   if (shape === "downTriangle") {
-    return `<polygon points="${polygonPoints([[cx - r * 0.95, cy - r * 0.72], [cx + r * 0.95, cy - r * 0.72], [cx, cy + r]])}" class="${cls}"></polygon>`;
+    return `<polygon points="${polygonPoints([[cx - r * 0.98, cy - r * 0.78], [cx + r * 0.98, cy - r * 0.78], [cx, cy + r]])}"${classAttr}${styleAttr}></polygon>`;
   }
   if (shape === "cross") {
-    const a = r * 0.95, b = r * 0.34;
+    const a = r * 1.02, b = r * 0.34;
     const pts = [[cx-b,cy-a],[cx+b,cy-a],[cx+b,cy-b],[cx+a,cy-b],[cx+a,cy+b],[cx+b,cy+b],[cx+b,cy+a],[cx-b,cy+a],[cx-b,cy+b],[cx-a,cy+b],[cx-a,cy-b],[cx-b,cy-b]];
-    return `<polygon points="${polygonPoints(pts)}" class="${cls}"></polygon>`;
+    return `<polygon points="${polygonPoints(pts)}"${classAttr}${styleAttr}></polygon>`;
   }
-  return `<circle cx="${cx.toFixed(1)}" cy="${cy.toFixed(1)}" r="${r.toFixed(1)}" class="${cls}"></circle>`;
+  return `<circle cx="${cx.toFixed(1)}" cy="${cy.toFixed(1)}" r="${r.toFixed(1)}"${classAttr}${styleAttr}></circle>`;
 }
 
 function pointRadius(d) {
@@ -473,7 +505,7 @@ function renderLandscape() {
     const familyKey = modelFamilyKey(d);
     const family = FAMILIES[familyKey] || FAMILIES.transformer_masked;
     svg += `<g class="model-node${selected}" data-id="${escapeHtml(d.id)}" tabindex="0" role="button" aria-label="${escapeHtml(d.name)}">`;
-    svg += `<g filter="url(#softShadow)">${shapeSvg(family.shape, cx, cy, r, `landscape-point ${opennessClass(d)}`)}</g>`;
+    svg += `<g filter="url(#softShadow)">${shapeSvg(family.shape, cx, cy, r, `landscape-point ${opennessClass(d)}`, pointColor(d), "#ffffff", "3")}</g>`;
     svg += `<circle cx="${cx.toFixed(1)}" cy="${cy.toFixed(1)}" r="${(r + 7).toFixed(1)}" class="hit-ring"></circle>`;
     svg += `<title>${escapeHtml(d.name)}\nFamily: ${escapeHtml(family.label)}\n${xMetric.label}: ${formatTick(xMetric, xVal)}\n${yMetric.label}: ${formatTick(yMetric, yVal)}\n${escapeHtml(d.openness_label || d.openness || "")}</title>`;
     if (landscape.labelMode || selected) {
