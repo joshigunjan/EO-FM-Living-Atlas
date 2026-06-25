@@ -1284,19 +1284,26 @@
   {
     "id": "olmoearth",
     "name": "OlmoEarth",
-    "scope": "Earth observation foundation model",
+    "scope": "Multimodal Earth observation foundation model",
     "input_modality": "Multimodal spatio-temporal EO imagery and auxiliary geospatial modalities.",
     "modality_tags": [
+      "optical",
+      "SAR",
+      "DEM",
+      "climate",
       "time series"
     ],
-    "architecture": "Stable latent image modeling for multimodal EO; self-supervised masking strategy and EO-specific loss.",
-    "architecture_tags": [],
-    "downstream_tasks": "Embeddings evaluated on 24 tasks; full fine-tuning on 29 tasks. Reported real-world partner tasks plus benchmark tasks including classification, segmentation, regression and mapping applications.",
-    "training_scale": "Training scale not in abstract; source code, training data, and pretrained weights reported available.",
-    "openness_text": "Open source: code, training data, and weights reported available.",
+    "architecture": "Stable latent image modeling for multimodal Earth observation.",
+    "architecture_tags": [
+      "Generative",
+      "Representation learning"
+    ],
+    "downstream_tasks": "Embeddings evaluated on 24 tasks; full fine-tuning reported on 29 tasks, including classification, segmentation, regression, and mapping applications. Exact task list should be checked against the paper when needed.",
+    "training_scale": "To be verified from the paper; source code, training data, and pretrained weights are reported as available.",
+    "openness_text": "Open source: code, training data, and pretrained weights reported available.",
     "openness": "open",
     "fm_strength": "Strong / emerging EO FM",
-    "notes": "Important 2025/2026 open model; add full task names after reading full paper if table will be submitted.",
+    "notes": "Important open multimodal EO foundation model. Full task names should be verified before using the count in a publication table.",
     "primary_source_url": "https://arxiv.org/abs/2511.13655",
     "paper_url": "https://arxiv.org/abs/2511.13655",
     "code_url": "https://github.com/allenai/olmoearth_pretrain",

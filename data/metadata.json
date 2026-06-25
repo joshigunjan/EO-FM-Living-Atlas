@@ -1,6 +1,6 @@
 {
   "project": "EO-FM Living Atlas",
-  "version": "v13-curated-landscape-method",
+  "version": "v16-olmoearth",
   "generated_on": "2026-06-25",
   "catalogue_entries": 74,
   "public_pages": [
@@ -28,5 +28,6 @@
     "x": "modality_complexity_score",
     "y": "reported_downstream_task_count",
     "note": "Default landscape uses explicit curated plotting fields rather than inferred tag counts."
-  }
+  },
+  "latest_update": "Added/verified OlmoEarth catalogue entry."
 }
