@@ -7,7 +7,7 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <header class="hero small">
+  <header class="hero small method-hero method-hero-workflow">
     <nav class="nav">
       <div class="brand">EO-FM Living Atlas</div>
       <div class="links">
@@ -19,31 +19,85 @@
     </nav>
     <div class="hero-content">
       <p class="eyebrow">Method</p>
-      <h1>How the catalogue is organized</h1>
-      <p class="subtitle">Scope, fields, task labels, and primary-source links.</p>
+      <h1>How the atlas is maintained</h1>
+      <p class="subtitle">A simple workflow for keeping entries useful, comparable, and traceable.</p>
     </div>
   </header>
-  <main class="container">
-    <section class="method-grid">
-      <article class="panel method-card">
-        <h2>Scope</h2>
-        <p>EO and remote-sensing foundation models, benchmarks, datasets, agents, and vision-language systems.</p>
+
+  <main class="container method-container method-workflow-container">
+    <section class="panel method-workflow-card">
+      <div class="method-section-head">
+        <p class="eyebrow dark">Curation workflow</p>
+        <h2>From paper to catalogue entry</h2>
+      </div>
+      <div class="workflow-steps">
+        <article>
+          <span>1</span>
+          <h3>Find</h3>
+          <p>Candidate entries come from papers, repositories, project pages, benchmarks, and community submissions.</p>
+        </article>
+        <article>
+          <span>2</span>
+          <h3>Check</h3>
+          <p>The entry is checked against the original paper, official repository, model card, project page, or weight release.</p>
+        </article>
+        <article>
+          <span>3</span>
+          <h3>Record</h3>
+          <p>Key fields are recorded: model name, scope, modalities, architecture, paradigm, tasks, openness, and source links.</p>
+        </article>
+        <article>
+          <span>4</span>
+          <h3>Update</h3>
+          <p>Reviewed entries are added to the structured catalogue, which also updates the interactive landscape.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="method-info-grid simple-method-grid">
+      <article class="panel method-card method-card-rich">
+        <h2>What is included</h2>
+        <p>EO foundation models, benchmarks, datasets, embedding products, agents, and vision-language systems.</p>
       </article>
-      <article class="panel method-card">
-        <h2>Fields</h2>
-        <p>Each row records scope, modality, architecture, paradigm, tasks, openness, and source links.</p>
+      <article class="panel method-card method-card-rich">
+        <h2>What is recorded</h2>
+        <p>Scope, modality, sensors, architecture, modelling paradigm, downstream tasks, openness, and links.</p>
       </article>
-      <article class="panel method-card">
+      <article class="panel method-card method-card-rich">
         <h2>Links</h2>
-        <p>Paper, code, project, and weight links point to primary sources whenever available.</p>
+        <p>Paper, code, weights, and project links point to original sources whenever available.</p>
       </article>
-      <article class="panel method-card">
+      <article class="panel method-card method-card-rich">
         <h2>Tasks</h2>
-        <p>Tasks are recorded as specific labels such as land-cover mapping, change detection, VQA, retrieval, or regression.</p>
+        <p>Tasks are kept as specific labels, such as land-cover mapping, change detection, segmentation, VQA, retrieval, or regression.</p>
+      </article>
+      <article class="panel method-card method-card-rich">
+        <h2>Landscape</h2>
+        <p>The default map uses curated plotting fields: modality-complexity tier and reported downstream evaluations.</p>
+      </article>
+      <article class="panel method-card method-card-rich">
+        <h2>Submissions</h2>
+        <p>Community submissions start as candidates and are checked before becoming public catalogue entries.</p>
       </article>
     </section>
-    <section class="panel compact-note"><b>Complete row:</b> name, paper link, scope, modalities, architecture, paradigm, tasks, openness, and source links.</section>
+
+    <section class="panel method-complete-row simple-method-row">
+      <div>
+        <p class="eyebrow dark">Complete entry</p>
+        <h2>A stable row should include</h2>
+      </div>
+      <ul>
+        <li>Model or benchmark name</li>
+        <li>Original paper link</li>
+        <li>Modalities and sensors</li>
+        <li>Architecture and paradigm</li>
+        <li>Downstream tasks</li>
+        <li>Code, weight, and project links</li>
+        <li>Openness and caveats</li>
+      </ul>
+    </section>
   </main>
+
   <footer><p>EO-FM Living Atlas · A community-maintained resource for Earth observation foundation models.</p></footer>
 </body>
 </html>

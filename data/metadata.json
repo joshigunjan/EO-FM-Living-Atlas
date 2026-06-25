@@ -1,6 +1,6 @@
 {
   "project": "EO-FM Living Atlas",
-  "version": "v7_modelling_paradigm",
+  "version": "v13-curated-landscape-method",
   "generated_on": "2026-06-25",
   "catalogue_entries": 74,
   "public_pages": [
@@ -23,5 +23,10 @@
   ],
   "source_note": "Catalogue rows should point to primary sources: original papers, official code repositories, official project pages, and official weight/model pages where available.",
   "modelling_paradigms": 6,
-  "notes": "Catalogue includes explicit modelling_paradigm_key and modelling_paradigm fields used by the Landscape marker shapes."
+  "notes": "Catalogue includes explicit modelling_paradigm_key and modelling_paradigm fields used by the Landscape marker shapes.",
+  "landscape_default_fields": {
+    "x": "modality_complexity_score",
+    "y": "reported_downstream_task_count",
+    "note": "Default landscape uses explicit curated plotting fields rather than inferred tag counts."
+  }
 }

@@ -39,6 +39,11 @@ def main():
     architecture_tags: []
     modelling_paradigm_key: TODO
     modelling_paradigm: TODO
+    modality_complexity_tier_key: TODO
+    modality_complexity_tier: TODO
+    modality_complexity_score: TODO
+    reported_downstream_task_count: TODO
+    reported_downstream_task_count_basis: candidate_submission
     task_tags: []
     downstream_tasks: TODO
     openness: unknown

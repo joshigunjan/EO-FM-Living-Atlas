@@ -1,31 +1,32 @@
 # EO-FM Living Atlas
 
-Editorial-clean version with balanced page headers and shorter public copy.
+EO-FM Living Atlas is a community-maintained catalogue of Earth observation foundation models, benchmarks, datasets, and related resources.
 
-EO-FM Living Atlas is an interactive catalogue of Earth observation and remote-sensing foundation models, benchmarks, and related resources.
+Each entry records modalities, architecture, modelling paradigm, downstream tasks, openness, and direct links to papers, code, weights, and project pages where available.
 
-The catalogue tracks more than paper titles. Each entry is structured by:
-
-- Scientific scope
-- Model category
-- Input modalities and sensors
-- Architecture family
-- Specific downstream tasks
-- Openness of code and weights
-- Direct paper, code, weight, and project links
-- Notes and caveats
-
-## Website pages
+## Pages
 
 - `index.html`: searchable catalogue
-- `submit.html`: paper submission route
-- `method.html`: catalogue scope and field definitions
+- `landscape.html`: interactive landscape map
+- `submit.html`: community submission route
+- `method.html`: scope, fields, and plotting rules
 
-## Data files
+## Data
 
-- `data/catalogue.json`: website data source
-- `data/catalogue.csv`: editable/exportable catalogue table
-- `schema/catalogue.schema.json`: expected structured fields
+- `data/catalogue.json`: primary website data source
+- `data/catalogue.csv`: editable/exportable table
+- `schema/catalogue.schema.json`: structured field schema
+
+## Landscape fields
+
+The default Landscape view uses explicit plotting fields:
+
+- `modality_complexity_score` and `modality_complexity_tier`
+- `reported_downstream_task_count`
+- `modelling_paradigm`
+- `openness`
+
+These fields are separate from task labels used for search and filtering. This keeps the living plot aligned with curated landscape figures while preserving flexible user-selected X/Y comparisons.
 
 ## GitHub Pages
 
@@ -35,27 +36,8 @@ Enable Pages from the repository root on the `main` branch. The site should be a
 
 ## Submission workflow
 
-The `Submit a paper` page links to a GitHub Issue Form. Suggested entries should include primary paper, code, project, and weight links wherever possible, together with modalities, architecture, and named downstream tasks.
+The `Submit a paper` page links to a GitHub Issue Form. Suggested entries should include primary paper, code, project, and weight links wherever possible, together with modalities, architecture, modelling paradigm, and named downstream tasks.
 
+## Design asset
 
-## Design assets
-
-The homepage uses `assets/hero-eo-layers.png` as a multimodal Earth observation background representing optical, SAR, DEM, and ERA5-style layers.
-
-
-## Landscape marker design
-
-The Landscape page uses color for release/availability and marker shape for the recorded `modelling_paradigm` field. Users can change the X-axis and Y-axis while keeping the same catalogue-derived points.
-
-
-## Modelling paradigm field
-
-Each catalogue entry now includes `modelling_paradigm_key` and `modelling_paradigm`. Marker shapes on the Landscape page use this explicit field rather than relying only on automatic inference. Edit these fields directly when a model family needs correction.
-
-
-Update v9: shortened the Landscape page intro and axis hint text.
-
-
-## v11 update
-
-Concise editorial pass across Catalogue, Landscape, Submit, and Method pages. Hero copy and method text were reduced for a cleaner public-facing site.
+The site uses `assets/hero-eo-layers.png`, a multimodal EO background representing optical, SAR, DEM, and ERA5-style layers.

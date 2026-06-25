@@ -4,7 +4,7 @@ const landscape = {
   selectedId: null,
   labelMode: false,
   xMetric: "modality_stage",
-  yMetric: "tasks"
+  yMetric: "reported_tasks"
 };
 
 const L = {
@@ -88,6 +88,11 @@ function modalityCount(d) {
 
 function taskCount(d) {
   return Math.max((d.task_tags || []).length, 1);
+}
+
+function reportedTaskCount(d) {
+  const n = Number(d.reported_downstream_task_count);
+  return Number.isFinite(n) && n > 0 ? n : taskCount(d);
 }
 
 function architectureCount(d) {
@@ -178,6 +183,13 @@ function modelFamilyLabel(d) {
 }
 
 function modalityStage(d) {
+  const explicit = Number(d.modality_complexity_score);
+  if (Number.isFinite(explicit) && explicit > 0) return explicit;
+  const key = String(d.modality_complexity_tier_key || "").toLowerCase();
+  if (key.includes("single")) return 1;
+  if (key.includes("multi")) return 2;
+  if (key.includes("vision") || key.includes("language")) return 3;
+  if (key.includes("general")) return 4;
   const text = combinedText(d);
   const name = String(d.name || "").toLowerCase();
   if (text.includes("any-to-any") || text.includes("generalist") || text.includes("earth system") || text.includes("embedding field") || text.includes("representation field") || name.includes("terramind") || name.includes("alphaearth") || name.includes("olmoearth") || name.includes("thor")) return 4;
@@ -185,12 +197,11 @@ function modalityStage(d) {
   if (modalityCount(d) > 1) return 2;
   return 1;
 }
-
 const METRICS = {
   modality_stage: {
-    label: "Modality complexity tier",
+    label: "Modality complexity",
     axis: "Modality complexity",
-    desc: "Categorical tier: single-modality, multi-modality, vision-language/MLLM, or generalist multimodal models.",
+    desc: "Curated tier: single-modality, multi-modality, vision-language/MLLM, or generalist models.",
     value: modalityStage,
     integer: true,
     min: 0.65,
@@ -212,10 +223,18 @@ const METRICS = {
     integer: true,
     min: 1
   },
+  reported_tasks: {
+    label: "Reported downstream evaluations",
+    axis: "Reported downstream evaluations",
+    desc: "Curated count of reported downstream tasks or evaluations from the source paper.",
+    value: reportedTaskCount,
+    integer: true,
+    min: 1
+  },
   tasks: {
-    label: "Downstream-task coverage",
-    axis: "Downstream task labels",
-    desc: "Number of downstream-task labels recorded in the catalogue.",
+    label: "Task-label coverage",
+    axis: "Recorded task labels",
+    desc: "Number of task labels recorded for filtering and search.",
     value: taskCount,
     integer: true,
     min: 1
@@ -446,7 +465,7 @@ function renderLandscape() {
   const ticksY = (yMetric.fixedTicks || niceTicks(yMin, yMax, yMetric.integer, 7)).filter(v => v >= yMin - 1e-6 && v <= yMax + 1e-6);
 
   L.count.textContent = `${visible.length} of ${all.length} entries shown`;
-  L.axisHint.textContent = `X-axis: ${xMetric.desc} Y-axis: ${yMetric.desc} Click any point to inspect the model.`;
+  L.axisHint.textContent = `X: ${xMetric.label}. Y: ${yMetric.label}. Click a point to inspect.`;
 
   L.plot.setAttribute("viewBox", `0 0 ${w} ${h}`);
   L.plot.setAttribute("preserveAspectRatio", "xMidYMid meet");
@@ -574,9 +593,9 @@ async function initLandscape() {
     L.architecture.value = "";
     L.family.value = "";
     L.xMetric.value = "modality_stage";
-    L.yMetric.value = "tasks";
+    L.yMetric.value = "reported_tasks";
     landscape.xMetric = "modality_stage";
-    landscape.yMetric = "tasks";
+    landscape.yMetric = "reported_tasks";
     L.labels.checked = false;
     landscape.labelMode = false;
     landscape.selectedId = null;
