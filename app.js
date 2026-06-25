@@ -39,9 +39,25 @@ function tag(text, cls = "") {
   return `<span class="badge ${cls}">${escapeHtml(text || "unknown")}</span>`;
 }
 
+function accessLabel(d) {
+  const o = String(d?.openness || d?.openness_label || "unknown").toLowerCase();
+  if (o.includes("open")) return "Open source";
+  if (o.includes("partial")) return "Partial access";
+  if (o.includes("closed")) return "Closed source";
+  return "Unknown";
+}
+
+function accessOptionLabel(value) {
+  const v = String(value || "").toLowerCase();
+  if (v.includes("open")) return "Open source";
+  if (v.includes("partial")) return "Partial access";
+  if (v.includes("closed")) return "Closed source";
+  return value || "Unknown";
+}
+
 function linkButton(label, url, compact = false) {
   if (!url) return `<span class="empty-link">—</span>`;
-  const text = compact ? "Open" : label;
+  const text = compact ? "Link" : label;
   return `<a class="link-pill" href="${escapeHtml(url)}" target="_blank" rel="noreferrer">${escapeHtml(text)}</a>`;
 }
 
@@ -53,7 +69,7 @@ function buildFilters() {
   const paradigms = uniq(state.data.map(d => d.modelling_paradigm));
 
   for (const s of categories) els.categoryFilter.insertAdjacentHTML("beforeend", `<option value="${escapeHtml(s)}">${escapeHtml(s)}</option>`);
-  for (const o of openness) els.opennessFilter.insertAdjacentHTML("beforeend", `<option value="${escapeHtml(o)}">${escapeHtml(o)}</option>`);
+  for (const o of openness) els.opennessFilter.insertAdjacentHTML("beforeend", `<option value="${escapeHtml(o)}">${escapeHtml(accessOptionLabel(o))}</option>`);
   for (const m of modalities) els.modalityFilter.insertAdjacentHTML("beforeend", `<option value="${escapeHtml(m)}">${escapeHtml(m)}</option>`);
   for (const t of tasks) els.taskFilter.insertAdjacentHTML("beforeend", `<option value="${escapeHtml(t)}">${escapeHtml(t)}</option>`);
   for (const p of paradigms) els.paradigmFilter.insertAdjacentHTML("beforeend", `<option value="${escapeHtml(p)}">${escapeHtml(p)}</option>`);
@@ -67,7 +83,7 @@ function renderStats() {
 
   els.stats.innerHTML = `
     <div class="stat-card"><div class="num">${total}</div><div class="label">Catalogue entries</div></div>
-    <div class="stat-card"><div class="num">${openish}</div><div class="label">Open or partly open</div></div>
+    <div class="stat-card"><div class="num">${openish}</div><div class="label">Open / partial access</div></div>
     <div class="stat-card"><div class="num">${tasks}</div><div class="label">Downstream task labels</div></div>
     <div class="stat-card"><div class="num">${withPaper}</div><div class="label">Direct paper links</div></div>
   `;
@@ -118,7 +134,7 @@ function renderTable() {
       <td>${(d.modality_tags || []).map(x => tag(x)).join("") || escapeHtml(truncate(d.input_modality, 80))}</td>
       <td>${(d.architecture_tags || []).map(x => tag(x, "arch")).join("") || escapeHtml(truncate(d.architecture, 80))}</td>
       <td class="tasks-cell">${taskChips}${moreTasks}<div class="task-preview">${escapeHtml(truncate(d.downstream_tasks, 125))}</div></td>
-      <td>${tag(d.openness_label || d.openness || "unknown", d.openness || "unknown")}</td>
+      <td>${tag(accessLabel(d), d.openness || "unknown")}</td>
       <td class="single-link">${linkButton("Paper", d.paper_url, true)}</td>
       <td class="single-link">${linkButton("Code", d.code_url, true)}</td>
       <td class="single-link">${linkButton("Weights", d.weights_url, true)}</td>
@@ -146,7 +162,7 @@ function renderDetails(d) {
     <div class="detail-section"><h3>Downstream tasks</h3><div class="task-strip">${tasks}</div><p>${escapeHtml(d.downstream_tasks)}</p></div>
     <div class="detail-section"><h3>Training scale / representation</h3><p>${escapeHtml(d.training_scale)}</p></div>
     <div class="detail-grid">
-      <div class="detail-key">Openness</div><div>${escapeHtml(d.openness_text || d.openness_label)}</div>
+      <div class="detail-key">Access</div><div>${escapeHtml(d.openness_text || accessLabel(d))}</div>
       <div class="detail-key">Strength</div><div>${escapeHtml(d.fm_strength)}</div>
       <div class="detail-key">Notes</div><div>${escapeHtml(d.notes)}</div>
     </div>

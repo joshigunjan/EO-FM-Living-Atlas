@@ -2,7 +2,7 @@
 
 EO-FM Living Atlas is a curated living catalogue of Earth observation foundation models, benchmarks, datasets, and related resources.
 
-Each entry records modalities, architecture, modelling paradigm, downstream tasks, openness, and direct links to papers, code, weights, and project pages where available.
+Each entry records modalities, architecture, modelling paradigm, downstream tasks, access, and direct links to papers, code, weights, and project pages where available.
 
 ## Pages
 
@@ -24,7 +24,7 @@ The default Landscape view uses explicit plotting fields:
 - `modality_complexity_score` and `modality_complexity_tier`
 - `reported_downstream_task_count`
 - `modelling_paradigm`
-- `openness`
+- `access`
 
 These fields are separate from task labels used for search and filtering. This keeps the living plot aligned with curated landscape figures while preserving flexible user-selected X/Y comparisons.
 

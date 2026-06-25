@@ -55,6 +55,14 @@ function escapeHtml(s) {
   }[c]));
 }
 
+function accessTextFromValue(value) {
+  const v = String(value || "").toLowerCase();
+  if (v.includes("open")) return "Open source";
+  if (v.includes("partial")) return "Partial access";
+  if (v.includes("closed")) return "Closed source";
+  return value || "Unknown";
+}
+
 function truncate(s, n = 145) {
   s = String(s ?? "");
   return s.length > n ? s.slice(0, n - 1) + "…" : s;
@@ -256,8 +264,8 @@ const METRICS = {
     min: 1
   },
   openness_score: {
-    label: "Openness score",
-    axis: "Openness score",
+    label: "Access score",
+    axis: "Access score",
     desc: "Closed = 0, unknown = 1, partial = 2, open = 3.",
     value: opennessScore,
     integer: true,
@@ -288,7 +296,7 @@ function buildFilters() {
   L.yMetric.value = landscape.yMetric;
 
   for (const o of uniq(landscape.data.map(d => d.openness_label || d.openness))) {
-    L.open.insertAdjacentHTML("beforeend", `<option value="${escapeHtml(o)}">${escapeHtml(o)}</option>`);
+    L.open.insertAdjacentHTML("beforeend", `<option value="${escapeHtml(o)}">${escapeHtml(accessTextFromValue(o))}</option>`);
   }
   for (const m of uniq(landscape.data.flatMap(d => d.modality_tags || []))) {
     L.modality.insertAdjacentHTML("beforeend", `<option value="${escapeHtml(m)}">${escapeHtml(m)}</option>`);
@@ -338,9 +346,9 @@ function renderLegendShape(key, size = 14) {
 
 function renderLegend() {
   const colorItems = [
-    ["open", "Open"],
-    ["partial", "Partial"],
-    ["closed", "Closed"],
+    ["open", "Open source"],
+    ["partial", "Partial access"],
+    ["closed", "Closed source"],
     ["unknown", "Unknown"]
   ];
   L.legend.innerHTML = colorItems.map(([key, label]) =>
@@ -565,7 +573,7 @@ function renderDetails(d) {
     <div class="detail-section"><h3>Modalities</h3><p>${escapeHtml(d.input_modality)}</p><div>${(d.modality_tags || []).map(x => tag(x)).join("")}</div></div>
     <div class="detail-section"><h3>Architecture</h3><p>${escapeHtml(d.architecture)}</p><div>${(d.architecture_tags || []).map(x => tag(x, "arch")).join("")}</div></div>
     <div class="detail-section"><h3>Downstream tasks</h3><div>${(d.task_tags || []).map(x => tag(x, "task")).join("")}</div><p>${escapeHtml(truncate(d.downstream_tasks, 360))}</p></div>
-    <div class="detail-section"><h3>Openness</h3><p>${escapeHtml(d.openness_text || d.openness_label || "Unknown")}</p></div>
+    <div class="detail-section"><h3>Access</h3><p>${escapeHtml(d.openness_text || d.openness_label || "Unknown")}</p></div>
   `;
   renderLandscape();
 }
