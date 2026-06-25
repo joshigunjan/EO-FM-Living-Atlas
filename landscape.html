@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Landscape · EO-FM Living Atlas</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="hero small">
+    <nav class="nav">
+      <div class="brand">EO-FM Living Atlas</div>
+      <div class="links">
+        <a href="index.html">Catalogue</a>
+        <a href="landscape.html">Landscape</a>
+        <a href="submit.html">Submit a paper</a>
+        <a href="method.html">Method</a>
+      </div>
+    </nav>
+    <div class="hero-content">
+      <p class="eyebrow">Living model landscape</p>
+      <h1>Map EO foundation models by modality breadth and downstream-task coverage.</h1>
+      <p class="subtitle">This view is generated directly from the catalogue data. When new verified entries are added, the landscape updates with the table.</p>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="panel controls-panel landscape-controls">
+      <div class="toolbar landscape-toolbar">
+        <input id="landscapeSearch" type="search" placeholder="Search model, modality, task, architecture...">
+        <select id="landscapeOpen"><option value="">All openness</option></select>
+        <select id="landscapeModality"><option value="">All modalities</option></select>
+        <select id="landscapeArchitecture"><option value="">All architectures</option></select>
+        <label class="check"><input id="showLabels" type="checkbox"> Show labels</label>
+        <button id="landscapeReset">Reset</button>
+      </div>
+      <div class="hint">X-axis: reported modality breadth. Y-axis: number of downstream task labels recorded in the atlas. Click any point to inspect the model.</div>
+    </section>
+
+    <section class="landscape-layout">
+      <div class="panel landscape-panel">
+        <div class="table-headline">
+          <div>
+            <h2>Foundation-model landscape</h2>
+            <p id="landscapeCount" class="muted"></p>
+          </div>
+          <div class="legend" id="landscapeLegend"></div>
+        </div>
+        <div id="plotWrap" class="plot-wrap">
+          <svg id="landscapePlot" role="img" aria-label="Scatter plot of EO foundation models"></svg>
+        </div>
+      </div>
+
+      <aside class="panel detail-panel landscape-detail-panel">
+        <p class="eyebrow dark">Selected model</p>
+        <h2 id="landscapeTitle">No model selected</h2>
+        <div id="landscapeDetails" class="details empty">Click a point on the landscape. The model summary and source links will open here.</div>
+      </aside>
+    </section>
+
+    <section class="panel">
+      <h2>How to read this map</h2>
+      <p>The landscape is not a ranking. It is a quick visual map of how broad each entry appears in the catalogue. Models toward the right use more recorded modalities. Models higher up report more named downstream-task labels. Openness is shown by point color.</p>
+    </section>
+  </main>
+
+  <footer><p>EO-FM Living Atlas — a community-maintained resource for Earth observation foundation models.</p></footer>
+  <script src="landscape.js"></script>
+</body>
+</html>

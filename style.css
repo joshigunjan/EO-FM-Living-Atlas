@@ -158,3 +158,35 @@ footer { text-align: center; color: var(--muted); padding: 32px 20px 54px; }
   .hero { padding-left: 18px; padding-right: 18px; }
   .container { padding: 0 14px; }
 }
+
+.hero-actions { margin-top: 18px; }
+.landscape-layout { display: grid; grid-template-columns: minmax(760px, 1fr) 390px; gap: 20px; align-items: start; }
+.landscape-panel { min-width: 0; }
+.landscape-toolbar { grid-template-columns: minmax(260px, 2fr) repeat(3, minmax(130px, 1fr)) auto auto; }
+.check { display: flex; align-items: center; gap: 8px; color: #334155; font-weight: 750; font-size: 0.9rem; white-space: nowrap; }
+.check input { width: auto; padding: 0; }
+.plot-wrap { width: 100%; overflow: auto; border: 1px solid var(--line); border-radius: 18px; background: #fff; }
+#landscapePlot { display: block; width: 100%; min-width: 860px; min-height: 560px; }
+.axis-label { fill: #64748b; font-size: 13px; font-weight: 700; }
+.axis-title { fill: #334155; font-size: 14px; font-weight: 850; letter-spacing: .01em; }
+.landscape-point { stroke: #fff; stroke-width: 2.5px; cursor: pointer; opacity: .9; transition: opacity .15s ease, transform .15s ease; }
+.model-node:hover .landscape-point { opacity: 1; stroke-width: 3.5px; }
+.selected-point .landscape-point { stroke: #0f172a; stroke-width: 4px; }
+.point-open { fill: #22c55e; }
+.point-partial { fill: #f59e0b; }
+.point-closed { fill: #ef4444; }
+.point-unknown { fill: #64748b; }
+.point-label { fill: #0f172a; font-size: 12px; font-weight: 850; paint-order: stroke; stroke: rgba(255,255,255,.96); stroke-width: 4px; stroke-linejoin: round; pointer-events: none; }
+.legend { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; justify-content: flex-end; }
+.legend-item { display: inline-flex; align-items: center; gap: 6px; color: #475569; font-size: .84rem; font-weight: 750; }
+.legend-dot { width: 11px; height: 11px; display: inline-block; border-radius: 999px; border: 2px solid white; box-shadow: 0 0 0 1px #cbd5e1; }
+.landscape-detail-panel { position: sticky; top: 16px; }
+@media (max-width: 1180px) {
+  .landscape-layout { grid-template-columns: 1fr; }
+  .landscape-toolbar { grid-template-columns: 1fr 1fr; }
+  .landscape-toolbar input { grid-column: 1 / -1; }
+}
+@media (max-width: 680px) {
+  .landscape-toolbar { grid-template-columns: 1fr; }
+  .legend { justify-content: flex-start; }
+}
