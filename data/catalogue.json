@@ -39,7 +39,9 @@
       "zero-shot classification",
       "captioning"
     ],
-    "openness_label": "Open"
+    "openness_label": "Open",
+    "modelling_paradigm_key": "generative_hybrid",
+    "modelling_paradigm": "Any-to-any generative / hybrid multimodal system"
   },
   {
     "id": "copernicus-fm",
@@ -76,7 +78,9 @@
       "flood mapping",
       "regression / estimation"
     ],
-    "openness_label": "Open"
+    "openness_label": "Open",
+    "modelling_paradigm_key": "transformer_masked",
+    "modelling_paradigm": "Transformer / masked-reconstruction encoder"
   },
   {
     "id": "anysat",
@@ -115,7 +119,9 @@
       "flood mapping",
       "burn-scar mapping"
     ],
-    "openness_label": "Open"
+    "openness_label": "Open",
+    "modelling_paradigm_key": "joint_embedding",
+    "modelling_paradigm": "Joint-embedding / contrastive-predictive encoder"
   },
   {
     "id": "dofa",
@@ -147,7 +153,9 @@
       "object detection",
       "change detection"
     ],
-    "openness_label": "Open"
+    "openness_label": "Open",
+    "modelling_paradigm_key": "transformer_masked",
+    "modelling_paradigm": "Transformer / masked-reconstruction encoder"
   },
   {
     "id": "dofa",
@@ -182,7 +190,9 @@
       "burn-scar mapping",
       "water-body mapping"
     ],
-    "openness_label": "Partial / unclear"
+    "openness_label": "Partial / unclear",
+    "modelling_paradigm_key": "generative_hybrid",
+    "modelling_paradigm": "Any-to-any generative / hybrid multimodal system"
   },
   {
     "id": "galileo",
@@ -218,7 +228,9 @@
       "crop-type mapping",
       "flood mapping"
     ],
-    "openness_label": "Open"
+    "openness_label": "Open",
+    "modelling_paradigm_key": "joint_embedding",
+    "modelling_paradigm": "Joint-embedding / contrastive-predictive encoder"
   },
   {
     "id": "prithvi-eo-1-0",
@@ -253,7 +265,9 @@
       "flood mapping",
       "burn-scar mapping"
     ],
-    "openness_label": "Open"
+    "openness_label": "Open",
+    "modelling_paradigm_key": "transformer_masked",
+    "modelling_paradigm": "Transformer / masked-reconstruction encoder"
   },
   {
     "id": "prithvi-eo-2-0",
@@ -290,7 +304,9 @@
       "regression / estimation",
       "time-series analysis"
     ],
-    "openness_label": "Open"
+    "openness_label": "Open",
+    "modelling_paradigm_key": "transformer_masked",
+    "modelling_paradigm": "Transformer / masked-reconstruction encoder"
   },
   {
     "id": "tessera",
@@ -322,7 +338,9 @@
       "crop-type mapping",
       "regression / estimation"
     ],
-    "openness_label": "Open"
+    "openness_label": "Open",
+    "modelling_paradigm_key": "embedding_field",
+    "modelling_paradigm": "Embedding product / representation field"
   },
   {
     "id": "alphaearth-foundations",
@@ -356,7 +374,9 @@
       "change detection",
       "regression / estimation"
     ],
-    "openness_label": "Closed"
+    "openness_label": "Closed",
+    "modelling_paradigm_key": "embedding_field",
+    "modelling_paradigm": "Embedding product / representation field"
   },
   {
     "id": "clay-v1-5",
@@ -394,7 +414,9 @@
       "burn-scar mapping",
       "regression / estimation"
     ],
-    "openness_label": "Open"
+    "openness_label": "Open",
+    "modelling_paradigm_key": "joint_embedding",
+    "modelling_paradigm": "Joint-embedding / contrastive-predictive encoder"
   },
   {
     "id": "satmae",
@@ -427,7 +449,9 @@
       "scene classification",
       "multi-label classification"
     ],
-    "openness_label": "Partial / unclear"
+    "openness_label": "Partial / unclear",
+    "modelling_paradigm_key": "transformer_masked",
+    "modelling_paradigm": "Transformer / masked-reconstruction encoder"
   },
   {
     "id": "satmae",
@@ -461,7 +485,9 @@
       "multi-label classification",
       "time-series analysis"
     ],
-    "openness_label": "Partial / unclear"
+    "openness_label": "Partial / unclear",
+    "modelling_paradigm_key": "transformer_masked",
+    "modelling_paradigm": "Transformer / masked-reconstruction encoder"
   },
   {
     "id": "scale-mae",
@@ -493,7 +519,9 @@
       "scene classification",
       "object detection"
     ],
-    "openness_label": "Partial / unclear"
+    "openness_label": "Partial / unclear",
+    "modelling_paradigm_key": "transformer_masked",
+    "modelling_paradigm": "Transformer / masked-reconstruction encoder"
   },
   {
     "id": "croma",
@@ -529,7 +557,9 @@
       "flood mapping",
       "burn-scar mapping"
     ],
-    "openness_label": "Partial / unclear"
+    "openness_label": "Partial / unclear",
+    "modelling_paradigm_key": "joint_embedding",
+    "modelling_paradigm": "Joint-embedding / contrastive-predictive encoder"
   },
   {
     "id": "skysense",
@@ -562,7 +592,9 @@
       "object detection",
       "change detection"
     ],
-    "openness_label": "Partial / unclear"
+    "openness_label": "Partial / unclear",
+    "modelling_paradigm_key": "transformer_masked",
+    "modelling_paradigm": "Transformer / masked-reconstruction encoder"
   },
   {
     "id": "skysense",
@@ -591,7 +623,9 @@
       "object detection",
       "change detection"
     ],
-    "openness_label": "Partial / unclear"
+    "openness_label": "Partial / unclear",
+    "modelling_paradigm_key": "transformer_masked",
+    "modelling_paradigm": "Transformer / masked-reconstruction encoder"
   },
   {
     "id": "skysense-v2",
@@ -624,7 +658,9 @@
       "object detection",
       "change detection"
     ],
-    "openness_label": "Partial / unclear"
+    "openness_label": "Partial / unclear",
+    "modelling_paradigm_key": "vision_language",
+    "modelling_paradigm": "Vision-language / EO MLLM"
   },
   {
     "id": "spectralgpt",
@@ -659,7 +695,9 @@
       "multi-label classification",
       "change detection"
     ],
-    "openness_label": "Partial / unclear"
+    "openness_label": "Partial / unclear",
+    "modelling_paradigm_key": "vision_language",
+    "modelling_paradigm": "Vision-language / EO MLLM"
   },
   {
     "id": "spectralearth",
@@ -689,7 +727,9 @@
       "scene classification",
       "crop-type mapping"
     ],
-    "openness_label": "Open"
+    "openness_label": "Open",
+    "modelling_paradigm_key": "transformer_masked",
+    "modelling_paradigm": "Transformer / masked-reconstruction encoder"
   },
   {
     "id": "hypersigma",
@@ -717,7 +757,9 @@
       "semantic segmentation",
       "scene classification"
     ],
-    "openness_label": "Partial / unclear"
+    "openness_label": "Partial / unclear",
+    "modelling_paradigm_key": "transformer_masked",
+    "modelling_paradigm": "Transformer / masked-reconstruction encoder"
   },
   {
     "id": "s2mae",
@@ -748,7 +790,9 @@
       "semantic segmentation",
       "scene classification"
     ],
-    "openness_label": "Partial / unclear"
+    "openness_label": "Partial / unclear",
+    "modelling_paradigm_key": "transformer_masked",
+    "modelling_paradigm": "Transformer / masked-reconstruction encoder"
   },
   {
     "id": "seco",
@@ -778,7 +822,9 @@
       "scene classification",
       "crop-type mapping"
     ],
-    "openness_label": "Partial / unclear"
+    "openness_label": "Partial / unclear",
+    "modelling_paradigm_key": "joint_embedding",
+    "modelling_paradigm": "Joint-embedding / contrastive-predictive encoder"
   },
   {
     "id": "satlaspretrain-satlasnet",
@@ -807,7 +853,9 @@
       "scene classification",
       "object detection"
     ],
-    "openness_label": "Partial / unclear"
+    "openness_label": "Partial / unclear",
+    "modelling_paradigm_key": "transformer_masked",
+    "modelling_paradigm": "Transformer / masked-reconstruction encoder"
   },
   {
     "id": "gfm-billion-scale-rsfm",
@@ -837,7 +885,9 @@
       "semantic segmentation",
       "object detection"
     ],
-    "openness_label": "Partial / unclear"
+    "openness_label": "Partial / unclear",
+    "modelling_paradigm_key": "transformer_masked",
+    "modelling_paradigm": "Transformer / masked-reconstruction encoder"
   },
   {
     "id": "mmearth-mp-mae",
@@ -868,7 +918,9 @@
       "semantic segmentation",
       "scene classification"
     ],
-    "openness_label": "Partial / unclear"
+    "openness_label": "Partial / unclear",
+    "modelling_paradigm_key": "transformer_masked",
+    "modelling_paradigm": "Transformer / masked-reconstruction encoder"
   },
   {
     "id": "omnisat",
@@ -899,7 +951,9 @@
       "scene classification",
       "crop-type mapping"
     ],
-    "openness_label": "Open"
+    "openness_label": "Open",
+    "modelling_paradigm_key": "joint_embedding",
+    "modelling_paradigm": "Joint-embedding / contrastive-predictive encoder"
   },
   {
     "id": "presto",
@@ -931,7 +985,9 @@
       "crop-type mapping",
       "regression / estimation"
     ],
-    "openness_label": "Open"
+    "openness_label": "Open",
+    "modelling_paradigm_key": "transformer_masked",
+    "modelling_paradigm": "Transformer / masked-reconstruction encoder"
   },
   {
     "id": "earthpt",
@@ -963,7 +1019,9 @@
       "forecasting / prediction",
       "time-series analysis"
     ],
-    "openness_label": "Partial / unclear"
+    "openness_label": "Partial / unclear",
+    "modelling_paradigm_key": "embedding_field",
+    "modelling_paradigm": "Embedding product / representation field"
   },
   {
     "id": "earthmae-earthview",
@@ -994,7 +1052,9 @@
     "task_tags": [
       "semantic segmentation"
     ],
-    "openness_label": "Partial / unclear"
+    "openness_label": "Partial / unclear",
+    "modelling_paradigm_key": "transformer_masked",
+    "modelling_paradigm": "Transformer / masked-reconstruction encoder"
   },
   {
     "id": "terrafm",
@@ -1025,7 +1085,9 @@
       "semantic segmentation",
       "scene classification"
     ],
-    "openness_label": "Partial / unclear"
+    "openness_label": "Partial / unclear",
+    "modelling_paradigm_key": "transformer_masked",
+    "modelling_paradigm": "Transformer / masked-reconstruction encoder"
   },
   {
     "id": "thor",
@@ -1055,7 +1117,9 @@
       "flood mapping",
       "burn-scar mapping"
     ],
-    "openness_label": "Partial / unclear"
+    "openness_label": "Partial / unclear",
+    "modelling_paradigm_key": "transformer_masked",
+    "modelling_paradigm": "Transformer / masked-reconstruction encoder"
   },
   {
     "id": "olmoearth",
@@ -1084,7 +1148,9 @@
       "scene classification",
       "regression / estimation"
     ],
-    "openness_label": "Open"
+    "openness_label": "Open",
+    "modelling_paradigm_key": "generative_hybrid",
+    "modelling_paradigm": "Any-to-any generative / hybrid multimodal system"
   },
   {
     "id": "satmamba",
@@ -1116,7 +1182,9 @@
       "scene classification",
       "object detection"
     ],
-    "openness_label": "Open"
+    "openness_label": "Open",
+    "modelling_paradigm_key": "state_space",
+    "modelling_paradigm": "State-space / sequence model"
   },
   {
     "id": "saratr-x",
@@ -1147,7 +1215,9 @@
       "semantic segmentation",
       "scene classification"
     ],
-    "openness_label": "Partial / unclear"
+    "openness_label": "Partial / unclear",
+    "modelling_paradigm_key": "transformer_masked",
+    "modelling_paradigm": "Transformer / masked-reconstruction encoder"
   },
   {
     "id": "sarmae",
@@ -1179,7 +1249,9 @@
       "scene classification",
       "SAR target recognition"
     ],
-    "openness_label": "Partial / unclear"
+    "openness_label": "Partial / unclear",
+    "modelling_paradigm_key": "transformer_masked",
+    "modelling_paradigm": "Transformer / masked-reconstruction encoder"
   },
   {
     "id": "complex-sar-fm",
@@ -1207,7 +1279,9 @@
       "semantic segmentation",
       "scene classification"
     ],
-    "openness_label": "Partial / unclear"
+    "openness_label": "Partial / unclear",
+    "modelling_paradigm_key": "transformer_masked",
+    "modelling_paradigm": "Transformer / masked-reconstruction encoder"
   },
   {
     "id": "crossearth-sar",
@@ -1235,7 +1309,9 @@
       "semantic segmentation",
       "scene classification"
     ],
-    "openness_label": "Partial / unclear"
+    "openness_label": "Partial / unclear",
+    "modelling_paradigm_key": "transformer_masked",
+    "modelling_paradigm": "Transformer / masked-reconstruction encoder"
   },
   {
     "id": "ringmo",
@@ -1266,7 +1342,9 @@
       "scene classification",
       "object detection"
     ],
-    "openness_label": "Partial / unclear"
+    "openness_label": "Partial / unclear",
+    "modelling_paradigm_key": "transformer_masked",
+    "modelling_paradigm": "Transformer / masked-reconstruction encoder"
   },
   {
     "id": "ringmo-sense",
@@ -1294,7 +1372,9 @@
       "semantic segmentation",
       "scene classification"
     ],
-    "openness_label": "Partial / unclear"
+    "openness_label": "Partial / unclear",
+    "modelling_paradigm_key": "transformer_masked",
+    "modelling_paradigm": "Transformer / masked-reconstruction encoder"
   },
   {
     "id": "ringmo-aerial",
@@ -1324,7 +1404,9 @@
       "scene classification",
       "object detection"
     ],
-    "openness_label": "Partial / unclear"
+    "openness_label": "Partial / unclear",
+    "modelling_paradigm_key": "transformer_masked",
+    "modelling_paradigm": "Transformer / masked-reconstruction encoder"
   },
   {
     "id": "ringmoe",
@@ -1350,7 +1432,9 @@
       "semantic segmentation",
       "scene classification"
     ],
-    "openness_label": "Partial / unclear"
+    "openness_label": "Partial / unclear",
+    "modelling_paradigm_key": "transformer_masked",
+    "modelling_paradigm": "Transformer / masked-reconstruction encoder"
   },
   {
     "id": "ringmamba",
@@ -1378,7 +1462,9 @@
       "semantic segmentation",
       "scene classification"
     ],
-    "openness_label": "Partial / unclear"
+    "openness_label": "Partial / unclear",
+    "modelling_paradigm_key": "state_space",
+    "modelling_paradigm": "State-space / sequence model"
   },
   {
     "id": "agrifm",
@@ -1409,7 +1495,9 @@
       "scene classification",
       "crop-type mapping"
     ],
-    "openness_label": "Partial / unclear"
+    "openness_label": "Partial / unclear",
+    "modelling_paradigm_key": "transformer_masked",
+    "modelling_paradigm": "Transformer / masked-reconstruction encoder"
   },
   {
     "id": "panopticon",
@@ -1437,7 +1525,9 @@
       "semantic segmentation",
       "scene classification"
     ],
-    "openness_label": "Partial / unclear"
+    "openness_label": "Partial / unclear",
+    "modelling_paradigm_key": "transformer_masked",
+    "modelling_paradigm": "Transformer / masked-reconstruction encoder"
   },
   {
     "id": "maestro",
@@ -1467,7 +1557,9 @@
       "semantic segmentation",
       "scene classification"
     ],
-    "openness_label": "Partial / unclear"
+    "openness_label": "Partial / unclear",
+    "modelling_paradigm_key": "transformer_masked",
+    "modelling_paradigm": "Transformer / masked-reconstruction encoder"
   },
   {
     "id": "mtp",
@@ -1496,7 +1588,9 @@
       "scene classification",
       "time-series analysis"
     ],
-    "openness_label": "Partial / unclear"
+    "openness_label": "Partial / unclear",
+    "modelling_paradigm_key": "transformer_masked",
+    "modelling_paradigm": "Transformer / masked-reconstruction encoder"
   },
   {
     "id": "rs-dfm",
@@ -1525,7 +1619,9 @@
       "object detection",
       "forecasting / prediction"
     ],
-    "openness_label": "Partial / unclear"
+    "openness_label": "Partial / unclear",
+    "modelling_paradigm_key": "transformer_masked",
+    "modelling_paradigm": "Transformer / masked-reconstruction encoder"
   },
   {
     "id": "oreole-fm",
@@ -1555,7 +1651,9 @@
       "semantic segmentation",
       "scene classification"
     ],
-    "openness_label": "Partial / unclear"
+    "openness_label": "Partial / unclear",
+    "modelling_paradigm_key": "joint_embedding",
+    "modelling_paradigm": "Joint-embedding / contrastive-predictive encoder"
   },
   {
     "id": "satvision-toa",
@@ -1581,7 +1679,9 @@
       "semantic segmentation",
       "scene classification"
     ],
-    "openness_label": "Partial / unclear"
+    "openness_label": "Partial / unclear",
+    "modelling_paradigm_key": "transformer_masked",
+    "modelling_paradigm": "Transformer / masked-reconstruction encoder"
   },
   {
     "id": "wv-net",
@@ -1608,7 +1708,9 @@
       "scene classification",
       "object detection"
     ],
-    "openness_label": "Partial / unclear"
+    "openness_label": "Partial / unclear",
+    "modelling_paradigm_key": "transformer_masked",
+    "modelling_paradigm": "Transformer / masked-reconstruction encoder"
   },
   {
     "id": "summit",
@@ -1634,7 +1736,9 @@
       "semantic segmentation",
       "scene classification"
     ],
-    "openness_label": "Partial / unclear"
+    "openness_label": "Partial / unclear",
+    "modelling_paradigm_key": "transformer_masked",
+    "modelling_paradigm": "Transformer / masked-reconstruction encoder"
   },
   {
     "id": "esfm",
@@ -1662,7 +1766,9 @@
     "task_tags": [
       "forecasting / prediction"
     ],
-    "openness_label": "Open"
+    "openness_label": "Open",
+    "modelling_paradigm_key": "transformer_masked",
+    "modelling_paradigm": "Transformer / masked-reconstruction encoder"
   },
   {
     "id": "prithvi-wxc",
@@ -1689,7 +1795,9 @@
     "task_tags": [
       "forecasting / prediction"
     ],
-    "openness_label": "Partial / unclear"
+    "openness_label": "Partial / unclear",
+    "modelling_paradigm_key": "transformer_masked",
+    "modelling_paradigm": "Transformer / masked-reconstruction encoder"
   },
   {
     "id": "remoteclip",
@@ -1722,7 +1830,9 @@
       "zero-shot classification",
       "captioning"
     ],
-    "openness_label": "Partial / unclear"
+    "openness_label": "Partial / unclear",
+    "modelling_paradigm_key": "vision_language",
+    "modelling_paradigm": "Vision-language / EO MLLM"
   },
   {
     "id": "georsclip",
@@ -1753,7 +1863,9 @@
       "image-text retrieval",
       "zero-shot classification"
     ],
-    "openness_label": "Partial / unclear"
+    "openness_label": "Partial / unclear",
+    "modelling_paradigm_key": "vision_language",
+    "modelling_paradigm": "Vision-language / EO MLLM"
   },
   {
     "id": "skyclip",
@@ -1785,7 +1897,9 @@
       "zero-shot classification",
       "captioning"
     ],
-    "openness_label": "Partial / unclear"
+    "openness_label": "Partial / unclear",
+    "modelling_paradigm_key": "vision_language",
+    "modelling_paradigm": "Vision-language / EO MLLM"
   },
   {
     "id": "earthgpt",
@@ -1816,7 +1930,9 @@
       "visual question answering",
       "reasoning / instruction following"
     ],
-    "openness_label": "Partial / unclear"
+    "openness_label": "Partial / unclear",
+    "modelling_paradigm_key": "vision_language",
+    "modelling_paradigm": "Vision-language / EO MLLM"
   },
   {
     "id": "geochat",
@@ -1848,7 +1964,9 @@
       "visual grounding / referring",
       "reasoning / instruction following"
     ],
-    "openness_label": "Partial / unclear"
+    "openness_label": "Partial / unclear",
+    "modelling_paradigm_key": "vision_language",
+    "modelling_paradigm": "Vision-language / EO MLLM"
   },
   {
     "id": "rs-llava",
@@ -1877,7 +1995,9 @@
       "visual question answering",
       "reasoning / instruction following"
     ],
-    "openness_label": "Partial / unclear"
+    "openness_label": "Partial / unclear",
+    "modelling_paradigm_key": "vision_language",
+    "modelling_paradigm": "Vision-language / EO MLLM"
   },
   {
     "id": "lhrs-bot",
@@ -1908,7 +2028,9 @@
       "visual question answering",
       "reasoning / instruction following"
     ],
-    "openness_label": "Partial / unclear"
+    "openness_label": "Partial / unclear",
+    "modelling_paradigm_key": "vision_language",
+    "modelling_paradigm": "Vision-language / EO MLLM"
   },
   {
     "id": "ringmogpt",
@@ -1940,7 +2062,9 @@
       "visual question answering",
       "reasoning / instruction following"
     ],
-    "openness_label": "Partial / unclear"
+    "openness_label": "Partial / unclear",
+    "modelling_paradigm_key": "vision_language",
+    "modelling_paradigm": "Vision-language / EO MLLM"
   },
   {
     "id": "skysensegpt",
@@ -1969,7 +2093,9 @@
       "visual question answering",
       "reasoning / instruction following"
     ],
-    "openness_label": "Partial / unclear"
+    "openness_label": "Partial / unclear",
+    "modelling_paradigm_key": "vision_language",
+    "modelling_paradigm": "Vision-language / EO MLLM"
   },
   {
     "id": "dofa-clip",
@@ -2001,7 +2127,9 @@
       "image-text retrieval",
       "zero-shot classification"
     ],
-    "openness_label": "Partial / unclear"
+    "openness_label": "Partial / unclear",
+    "modelling_paradigm_key": "vision_language",
+    "modelling_paradigm": "Vision-language / EO MLLM"
   },
   {
     "id": "geoground",
@@ -2028,7 +2156,9 @@
     "task_tags": [
       "visual grounding / referring"
     ],
-    "openness_label": "Partial / unclear"
+    "openness_label": "Partial / unclear",
+    "modelling_paradigm_key": "vision_language",
+    "modelling_paradigm": "Vision-language / EO MLLM"
   },
   {
     "id": "rsunivlm",
@@ -2061,7 +2191,9 @@
       "visual question answering",
       "visual grounding / referring"
     ],
-    "openness_label": "Partial / unclear"
+    "openness_label": "Partial / unclear",
+    "modelling_paradigm_key": "vision_language",
+    "modelling_paradigm": "Vision-language / EO MLLM"
   },
   {
     "id": "reo-vlm",
@@ -2093,7 +2225,9 @@
       "visual question answering",
       "reasoning / instruction following"
     ],
-    "openness_label": "Partial / unclear"
+    "openness_label": "Partial / unclear",
+    "modelling_paradigm_key": "vision_language",
+    "modelling_paradigm": "Vision-language / EO MLLM"
   },
   {
     "id": "fusar-gpt",
@@ -2125,7 +2259,9 @@
       "visual question answering",
       "reasoning / instruction following"
     ],
-    "openness_label": "Partial / unclear"
+    "openness_label": "Partial / unclear",
+    "modelling_paradigm_key": "vision_language",
+    "modelling_paradigm": "Vision-language / EO MLLM"
   },
   {
     "id": "sarclip",
@@ -2157,7 +2293,9 @@
       "image-text retrieval",
       "zero-shot classification"
     ],
-    "openness_label": "Partial / unclear"
+    "openness_label": "Partial / unclear",
+    "modelling_paradigm_key": "vision_language",
+    "modelling_paradigm": "Vision-language / EO MLLM"
   },
   {
     "id": "earthdial",
@@ -2188,7 +2326,9 @@
       "visual question answering",
       "reasoning / instruction following"
     ],
-    "openness_label": "Partial / unclear"
+    "openness_label": "Partial / unclear",
+    "modelling_paradigm_key": "vision_language",
+    "modelling_paradigm": "Vision-language / EO MLLM"
   },
   {
     "id": "teochat",
@@ -2219,7 +2359,9 @@
       "visual question answering",
       "reasoning / instruction following"
     ],
-    "openness_label": "Partial / unclear"
+    "openness_label": "Partial / unclear",
+    "modelling_paradigm_key": "vision_language",
+    "modelling_paradigm": "Vision-language / EO MLLM"
   },
   {
     "id": "lisat",
@@ -2249,7 +2391,9 @@
       "semantic segmentation",
       "visual grounding / referring"
     ],
-    "openness_label": "Partial / unclear"
+    "openness_label": "Partial / unclear",
+    "modelling_paradigm_key": "vision_language",
+    "modelling_paradigm": "Vision-language / EO MLLM"
   },
   {
     "id": "rsgpt",
@@ -2280,7 +2424,9 @@
       "visual question answering",
       "reasoning / instruction following"
     ],
-    "openness_label": "Partial / unclear"
+    "openness_label": "Partial / unclear",
+    "modelling_paradigm_key": "vision_language",
+    "modelling_paradigm": "Vision-language / EO MLLM"
   },
   {
     "id": "geopix",
@@ -2312,6 +2458,8 @@
       "visual question answering",
       "reasoning / instruction following"
     ],
-    "openness_label": "Partial / unclear"
+    "openness_label": "Partial / unclear",
+    "modelling_paradigm_key": "vision_language",
+    "modelling_paradigm": "Vision-language / EO MLLM"
   }
 ]

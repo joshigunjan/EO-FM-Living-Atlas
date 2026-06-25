@@ -18,36 +18,53 @@
       </div>
     </nav>
     <div class="hero-content">
-      <p class="eyebrow">Living model landscape</p>
-      <h1>Map EO foundation models by modality breadth and downstream-task coverage.</h1>
-      <p class="subtitle">This view is generated directly from the catalogue data. When new verified entries are added, the landscape updates with the table.</p>
+      <p class="eyebrow">Interactive model landscape</p>
+      <h1>Explore EO foundation models through configurable axes and task filters.</h1>
+      <p class="subtitle">Choose what the x- and y-axes represent, filter by modality, downstream task, architecture, or modelling paradigm, and inspect each model with its paper, code, weights, and project links.</p>
     </div>
   </header>
 
   <main class="container">
     <section class="panel controls-panel landscape-controls">
-      <div class="toolbar landscape-toolbar">
-        <input id="landscapeSearch" type="search" placeholder="Search model, modality, task, architecture...">
+      <div class="axis-control-grid">
+        <label class="control-label">X-axis
+          <select id="xMetric"></select>
+        </label>
+        <label class="control-label">Y-axis
+          <select id="yMetric"></select>
+        </label>
+        <label class="control-label wide">Search
+          <input id="landscapeSearch" type="search" placeholder="Search model, modality, task, architecture...">
+        </label>
+      </div>
+      <div class="toolbar landscape-toolbar dynamic-toolbar">
         <select id="landscapeOpen"><option value="">All openness</option></select>
         <select id="landscapeModality"><option value="">All modalities</option></select>
+        <select id="landscapeTask"><option value="">All downstream tasks</option></select>
         <select id="landscapeArchitecture"><option value="">All architectures</option></select>
+        <select id="landscapeFamily"><option value="">All modelling paradigms</option></select>
         <label class="check"><input id="showLabels" type="checkbox"> Show labels</label>
         <button id="landscapeReset">Reset</button>
       </div>
-      <div class="hint">X-axis: reported modality breadth. Y-axis: number of downstream task labels recorded in the atlas. Click any point to inspect the model.</div>
+      <div id="axisHint" class="hint">Change the axes to compare modality breadth, downstream-task coverage, architecture breadth, openness, or link availability. Click any point to inspect the model.</div>
     </section>
 
-    <section class="landscape-layout">
-      <div class="panel landscape-panel">
-        <div class="table-headline">
+    <section class="landscape-layout improved-landscape-layout">
+      <div class="panel landscape-panel improved-landscape-panel">
+        <div class="table-headline landscape-headline">
           <div>
             <h2>Foundation-model landscape</h2>
             <p id="landscapeCount" class="muted"></p>
           </div>
-          <div class="legend" id="landscapeLegend"></div>
+          <div class="legend-stack">
+            <div class="legend-title">Color: release / availability</div>
+            <div class="legend" id="landscapeLegend"></div>
+            <div class="legend-title">Shape: modelling paradigm</div>
+            <div class="shape-legend" id="familyLegend"></div>
+          </div>
         </div>
-        <div id="plotWrap" class="plot-wrap">
-          <svg id="landscapePlot" role="img" aria-label="Scatter plot of EO foundation models"></svg>
+        <div id="plotWrap" class="plot-wrap improved-plot-wrap">
+          <svg id="landscapePlot" role="img" aria-label="Configurable scatter plot of EO foundation models"></svg>
         </div>
       </div>
 
@@ -60,7 +77,7 @@
 
     <section class="panel">
       <h2>How to read this map</h2>
-      <p>The landscape is not a ranking. It is a quick visual map of how broad each entry appears in the catalogue. Models toward the right use more recorded modalities. Models higher up report more named downstream-task labels. Openness is shown by point color.</p>
+      <p>The landscape is exploratory, not a ranking. Axis values and marker styles are derived from the catalogue fields: modality tags, downstream-task tags, architecture tags, openness, source links, and the recorded modelling paradigm. Use the task filter to focus on a subset, for example land-cover mapping, change detection, captioning, or regression.</p>
     </section>
   </main>
 

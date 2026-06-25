@@ -39,3 +39,13 @@ The `Submit a paper` page links to a GitHub Issue Form. Suggested entries should
 ## Design assets
 
 The homepage uses `assets/hero-eo-layers.png` as a multimodal Earth observation background representing optical, SAR, DEM, and ERA5-style layers.
+
+
+## Landscape marker design
+
+The Landscape page uses color for release/availability and marker shape for the recorded `modelling_paradigm` field. Users can change the X-axis and Y-axis while keeping the same catalogue-derived points.
+
+
+## Modelling paradigm field
+
+Each catalogue entry now includes `modelling_paradigm_key` and `modelling_paradigm`. Marker shapes on the Landscape page use this explicit field rather than relying only on automatic inference. Edit these fields directly when a model family needs correction.

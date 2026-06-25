@@ -7,7 +7,9 @@
     "name",
     "scope",
     "category",
-    "downstream_tasks"
+    "downstream_tasks",
+    "modelling_paradigm",
+    "modelling_paradigm_key"
   ],
   "properties": {
     "id": {
@@ -78,6 +80,28 @@
     },
     "notes": {
       "type": "string"
+    },
+    "modelling_paradigm_key": {
+      "type": "string",
+      "enum": [
+        "transformer_masked",
+        "joint_embedding",
+        "vision_language",
+        "state_space",
+        "embedding_field",
+        "generative_hybrid"
+      ]
+    },
+    "modelling_paradigm": {
+      "type": "string",
+      "enum": [
+        "Transformer / masked-reconstruction encoder",
+        "Joint-embedding / contrastive-predictive encoder",
+        "Vision-language / EO MLLM",
+        "State-space / sequence model",
+        "Embedding product / representation field",
+        "Any-to-any generative / hybrid multimodal system"
+      ]
     }
   }
 }

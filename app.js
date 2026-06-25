@@ -11,6 +11,7 @@ const els = {
   opennessFilter: document.getElementById("opennessFilter"),
   modalityFilter: document.getElementById("modalityFilter"),
   taskFilter: document.getElementById("taskFilter"),
+  paradigmFilter: document.getElementById("paradigmFilter"),
   resetBtn: document.getElementById("resetBtn"),
   clearSelection: document.getElementById("clearSelection"),
   tbody: document.querySelector("#catalogueTable tbody"),
@@ -49,11 +50,13 @@ function buildFilters() {
   const openness = uniq(state.data.map(d => d.openness_label || d.openness));
   const modalities = uniq(state.data.flatMap(d => d.modality_tags || []));
   const tasks = uniq(state.data.flatMap(d => d.task_tags || []));
+  const paradigms = uniq(state.data.map(d => d.modelling_paradigm));
 
   for (const s of categories) els.categoryFilter.insertAdjacentHTML("beforeend", `<option value="${escapeHtml(s)}">${escapeHtml(s)}</option>`);
   for (const o of openness) els.opennessFilter.insertAdjacentHTML("beforeend", `<option value="${escapeHtml(o)}">${escapeHtml(o)}</option>`);
   for (const m of modalities) els.modalityFilter.insertAdjacentHTML("beforeend", `<option value="${escapeHtml(m)}">${escapeHtml(m)}</option>`);
   for (const t of tasks) els.taskFilter.insertAdjacentHTML("beforeend", `<option value="${escapeHtml(t)}">${escapeHtml(t)}</option>`);
+  for (const p of paradigms) els.paradigmFilter.insertAdjacentHTML("beforeend", `<option value="${escapeHtml(p)}">${escapeHtml(p)}</option>`);
 }
 
 function renderStats() {
@@ -72,7 +75,7 @@ function renderStats() {
 
 function rowText(d) {
   return [
-    d.name, d.category, d.scope, d.input_modality, d.architecture, d.downstream_tasks,
+    d.name, d.category, d.scope, d.modelling_paradigm, d.input_modality, d.architecture, d.downstream_tasks,
     d.training_scale, d.openness_text, d.fm_strength, d.notes, d.paper_url, d.code_url,
     d.weights_url, d.project_url,
     ...(d.modality_tags || []), ...(d.architecture_tags || []), ...(d.task_tags || [])
@@ -85,6 +88,7 @@ function applyFilters() {
   const open = els.opennessFilter.value;
   const mod = els.modalityFilter.value;
   const task = els.taskFilter.value;
+  const paradigm = els.paradigmFilter.value;
 
   state.filtered = state.data.filter(d => {
     if (q && !rowText(d).includes(q)) return false;
@@ -92,6 +96,7 @@ function applyFilters() {
     if (open && (d.openness_label || d.openness) !== open) return false;
     if (mod && !(d.modality_tags || []).includes(mod)) return false;
     if (task && !(d.task_tags || []).includes(task)) return false;
+    if (paradigm && d.modelling_paradigm !== paradigm) return false;
     return true;
   });
   renderTable();
@@ -109,6 +114,7 @@ function renderTable() {
     tr.innerHTML = `
       <td class="name"><span>${escapeHtml(d.name)}</span><small>${escapeHtml(d.category || "")}</small></td>
       <td>${escapeHtml(d.scope)}</td>
+      <td>${tag(d.modelling_paradigm || "Unknown", "paradigm")}</td>
       <td>${(d.modality_tags || []).map(x => tag(x)).join("") || escapeHtml(truncate(d.input_modality, 80))}</td>
       <td>${(d.architecture_tags || []).map(x => tag(x, "arch")).join("") || escapeHtml(truncate(d.architecture, 80))}</td>
       <td class="tasks-cell">${taskChips}${moreTasks}<div class="task-preview">${escapeHtml(truncate(d.downstream_tasks, 125))}</div></td>
@@ -134,6 +140,7 @@ function renderDetails(d) {
   els.details.innerHTML = `
     <div class="detail-actions">${linkButton("Original paper", d.paper_url)}${linkButton("Code", d.code_url)}${linkButton("Weights", d.weights_url)}${linkButton("Project page", d.project_url)}</div>
     <div class="detail-section"><h3>Scientific scope</h3><p>${escapeHtml(d.scope)}</p></div>
+    <div class="detail-section"><h3>Modelling paradigm</h3><p>${escapeHtml(d.modelling_paradigm || "Unknown")}</p></div>
     <div class="detail-section"><h3>Modalities</h3><p>${escapeHtml(d.input_modality)}</p><div>${(d.modality_tags || []).map(x => tag(x)).join("")}</div></div>
     <div class="detail-section"><h3>Architecture</h3><p>${escapeHtml(d.architecture)}</p><div>${(d.architecture_tags || []).map(x => tag(x, "arch")).join("")}</div></div>
     <div class="detail-section"><h3>Downstream tasks</h3><div class="task-strip">${tasks}</div><p>${escapeHtml(d.downstream_tasks)}</p></div>
@@ -163,7 +170,7 @@ async function init() {
   renderStats();
   renderTable();
 
-  [els.search, els.categoryFilter, els.opennessFilter, els.modalityFilter, els.taskFilter].forEach(el => {
+  [els.search, els.categoryFilter, els.opennessFilter, els.modalityFilter, els.taskFilter, els.paradigmFilter].forEach(el => {
     el.addEventListener("input", applyFilters);
     el.addEventListener("change", applyFilters);
   });
@@ -173,6 +180,7 @@ async function init() {
     els.opennessFilter.value = "";
     els.modalityFilter.value = "";
     els.taskFilter.value = "";
+    els.paradigmFilter.value = "";
     applyFilters();
   });
   els.clearSelection.addEventListener("click", clearDetails);

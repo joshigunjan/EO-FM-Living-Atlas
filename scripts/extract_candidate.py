@@ -37,6 +37,8 @@ def main():
     scope: Earth observation foundation model
     modality_tags: []
     architecture_tags: []
+    modelling_paradigm_key: TODO
+    modelling_paradigm: TODO
     task_tags: []
     downstream_tasks: TODO
     openness: unknown

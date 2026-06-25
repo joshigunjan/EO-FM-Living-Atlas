@@ -1,6 +1,6 @@
 {
   "project": "EO-FM Living Atlas",
-  "version": "v2-public-catalogue",
+  "version": "v7_modelling_paradigm",
   "generated_on": "2026-06-25",
   "catalogue_entries": 74,
   "public_pages": [
@@ -21,5 +21,7 @@
     "weights_url",
     "project_url"
   ],
-  "source_note": "Catalogue rows should point to primary sources: original papers, official code repositories, official project pages, and official weight/model pages where available."
+  "source_note": "Catalogue rows should point to primary sources: original papers, official code repositories, official project pages, and official weight/model pages where available.",
+  "modelling_paradigms": 6,
+  "notes": "Catalogue includes explicit modelling_paradigm_key and modelling_paradigm fields used by the Landscape marker shapes."
 }
