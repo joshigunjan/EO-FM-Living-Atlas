@@ -3,13 +3,13 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>EO-FM Atlas</title>
+  <title>EO-FM Living Atlas</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <header class="hero">
     <nav class="nav">
-      <div class="brand">EO-FM Atlas</div>
+      <div class="brand">EO-FM Living Atlas</div>
       <div class="links">
         <a href="index.html">Catalogue</a>
         <a href="watchlist.html">Watchlist</a>
@@ -18,58 +18,71 @@
       </div>
     </nav>
     <div class="hero-content">
-      <p class="eyebrow">Living catalogue for Earth observation foundation models</p>
-      <h1>Search, filter, and track EO foundation models, benchmarks, datasets, and language-capable geospatial models.</h1>
-      <p class="subtitle">Seeded from a curated workbook. New submissions should enter as candidates and become verified only after human review.</p>
+      <p class="eyebrow">Structured atlas, not just an awesome list</p>
+      <h1>Earth observation foundation models mapped by modality, architecture, openness, and downstream tasks.</h1>
+      <p class="subtitle">A living, human-reviewed catalogue seeded from a curated workbook and enriched with original paper, code, and weight links where available.</p>
     </div>
   </header>
 
   <main class="container">
     <section class="stats" id="stats"></section>
 
-    <section class="panel">
+    <section class="panel controls-panel">
       <div class="toolbar">
-        <input id="search" type="search" placeholder="Search model, modality, architecture, task, source URL...">
-        <select id="scopeFilter">
-          <option value="">All scopes</option>
-        </select>
-        <select id="opennessFilter">
-          <option value="">All openness</option>
-        </select>
-        <select id="modalityFilter">
-          <option value="">All modalities</option>
-        </select>
+        <input id="search" type="search" placeholder="Search model, modality, task, architecture, dataset, paper...">
+        <select id="categoryFilter"><option value="">All categories</option></select>
+        <select id="opennessFilter"><option value="">All openness</option></select>
+        <select id="modalityFilter"><option value="">All modalities</option></select>
+        <select id="taskFilter"><option value="">All tasks</option></select>
         <button id="resetBtn">Reset</button>
       </div>
       <div class="hint">
-        Tip: search for terms like <b>SAR</b>, <b>LiDAR</b>, <b>masked</b>, <b>captioning</b>, <b>change detection</b>, or <b>open</b>.
-      </div>
-      <div class="table-wrap">
-        <table id="catalogueTable">
-          <thead>
-            <tr>
-              <th>Name</th>
-              <th>Scope</th>
-              <th>Modalities</th>
-              <th>Architecture</th>
-              <th>Openness</th>
-              <th>Status</th>
-              <th>Source</th>
-            </tr>
-          </thead>
-          <tbody></tbody>
-        </table>
+        Try: <b>SAR</b>, <b>change detection</b>, <b>crop-type mapping</b>, <b>VQA</b>, <b>MAE</b>, <b>open weights</b>, or <b>hyperspectral</b>.
       </div>
     </section>
 
-    <section class="panel">
-      <h2>Selected entry details</h2>
-      <div id="details" class="details empty">Click a row to inspect tasks, training scale, and caveats.</div>
+    <section class="catalogue-layout">
+      <div class="panel table-panel">
+        <div class="table-headline">
+          <div>
+            <h2>Catalogue</h2>
+            <p id="resultCount" class="muted"></p>
+          </div>
+          <button id="clearSelection" class="ghost">Clear selection</button>
+        </div>
+        <div class="table-wrap">
+          <table id="catalogueTable">
+            <thead>
+              <tr>
+                <th>Model</th>
+                <th>Scope</th>
+                <th>Modalities</th>
+                <th>Architecture</th>
+                <th>Downstream tasks</th>
+                <th>Open</th>
+                <th>Links</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </div>
+
+      <aside class="panel detail-panel">
+        <div class="detail-title-row">
+          <div>
+            <p class="eyebrow dark">Selected entry</p>
+            <h2 id="detailTitle">No model selected</h2>
+          </div>
+        </div>
+        <div id="details" class="details empty">Click a row. Details open here, next to the table, so you do not have to scroll to the bottom.</div>
+      </aside>
     </section>
   </main>
 
   <footer>
-    <p>EO-FM Atlas is a starter static site. Replace this footer with your project citation and GitHub repository link.</p>
+    <p>EO-FM Living Atlas. Seeded from a curated workbook; submissions should be reviewed before becoming public catalogue entries.</p>
   </footer>
 
   <script src="app.js"></script>

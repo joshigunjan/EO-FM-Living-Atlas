@@ -3,13 +3,13 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Method | EO-FM Atlas</title>
+  <title>Method · EO-FM Living Atlas</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <header class="hero small">
     <nav class="nav">
-      <div class="brand">EO-FM Atlas</div>
+      <div class="brand">EO-FM Living Atlas</div>
       <div class="links">
         <a href="index.html">Catalogue</a>
         <a href="watchlist.html">Watchlist</a>
@@ -18,28 +18,41 @@
       </div>
     </nav>
     <div class="hero-content">
-      <p class="eyebrow">Curation method</p>
-      <h1>A structured, human-reviewed living database.</h1>
+      <p class="eyebrow">Method</p>
+      <h1>How entries are structured and verified.</h1>
     </div>
   </header>
-
   <main class="container">
     <section class="panel">
       <h2>Scope</h2>
-      <p>The catalogue tracks Earth observation foundation models, remote-sensing vision-language models, multimodal geospatial models, benchmark papers, datasets, and related tools.</p>
-
+      <p>The atlas focuses on Earth observation and remote-sensing foundation models, including visual, multimodal, SAR/radar, spectral/hyperspectral, Earth-system, and vision-language/MLLM models. Benchmarks and datasets are tracked separately in the watchlist until converted into full structured entries.</p>
+    </section>
+    <section class="panel">
+      <h2>What makes this different from an awesome list?</h2>
+      <p>An awesome list usually records abbreviation, title, paper, code, and weights. This atlas keeps those links but adds scientific structure: scope, modalities, architecture family, downstream tasks, training scale, openness, caveats, and review status.</p>
+    </section>
+    <section class="panel">
       <h2>Status labels</h2>
-      <div class="detail-grid">
-        <div class="detail-key">seed_verified</div><div>Curated detailed entry from the seed workbook. Check latest paper/repo before final academic claims.</div>
-        <div class="detail-key">seed_specialized</div><div>Curated VLM/MLLM entry. Relevant to the landscape but sometimes not a sensor-only EO foundation model.</div>
-        <div class="detail-key">watchlist_unverified</div><div>Registry entry that requires source-paper verification before promotion.</div>
-        <div class="detail-key">candidate_auto_extracted</div><div>Draft entry produced by automation from a submitted URL or paper.</div>
-        <div class="detail-key">verified</div><div>Human-reviewed and approved for the public catalogue.</div>
-      </div>
-
-      <h2>Recommended academic wording</h2>
-      <p>“We maintained a structured catalogue of EO foundation models and benchmarks using a common schema covering modality, architecture, pretraining objective, scale, downstream tasks, openness, and source availability. Candidate entries were identified through community submissions and scholarly search, then manually reviewed before inclusion.”</p>
+      <p><b>Curated seed</b> means the row comes from the manually curated seed workbook and is treated as part of the initial verified catalogue. <b>Specialized seed</b> means the row is included from the seed workbook but belongs to a specialized subgroup, usually vision-language or MLLM models. <b>Candidate</b> means a submitted or automatically discovered entry that still needs human review.</p>
+    </section>
+    <section class="panel">
+      <h2>Link policy</h2>
+      <p>Rows should link to original papers, project pages, code repositories, and model weights, not just to another registry. External registries such as Awesome Remote Sensing Foundation Models are used as provenance and cross-checking sources for paper/code/weight links.</p>
+    </section>
+    <section class="panel">
+      <h2>Minimum fields for a verified row</h2>
+      <ul>
+        <li>Model name and paper title</li>
+        <li>Original paper link</li>
+        <li>Scope and model category</li>
+        <li>Input modalities and sensors where available</li>
+        <li>Architecture family</li>
+        <li>Named downstream tasks</li>
+        <li>Openness: code, weights, data, or closed/unclear</li>
+        <li>Notes and caveats</li>
+      </ul>
     </section>
   </main>
+  <footer><p>EO-FM Living Atlas.</p></footer>
 </body>
 </html>

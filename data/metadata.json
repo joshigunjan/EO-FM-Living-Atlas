@@ -1,37 +1,17 @@
 {
-  "project": "EO-FM Atlas",
-  "description": "Starter database generated from the user's curated EO foundation models workbook.",
-  "generated_from": "eo_foundation_models_table(1).xlsx",
+  "project": "EO-FM Living Atlas",
+  "version": "v1-structured",
   "generated_on": "2026-06-25",
   "catalogue_entries": 74,
-  "watchlist_entries": 105,
-  "coverage_notes": [
-    {
-      "item": "Scope",
-      "note": "This workbook is a comprehensive working registry as of 19 June 2026, not a mathematically exhaustive list. EO foundation-model papers are appearing rapidly, including arXiv preprints."
-    },
-    {
-      "item": "How unknown values are handled",
-      "note": "If a paper/repo did not disclose token count, parameter count, image count, or checkpoint license in the public source reviewed, the cell says 'not reported' or 'partial/unclear' rather than guessing."
-    },
-    {
-      "item": "Definition used",
-      "note": "Strong EO FM means trained at scale on EO/geospatial data, learns transferable representations, adapts to multiple downstream tasks, and handles geographic/time/sensor/modality variation. Partial means it meets some but not all criteria, or is domain/language/task-specific."
-    },
-    {
-      "item": "Recommended use",
-      "note": "For a paper or presentation, use the Detailed_EO_FMs sheet as the main table and mention that the Extended_Registry sheet is a living appendix."
-    },
-    {
-      "item": "Sources",
-      "note": "Each detailed row includes at least one primary or registry URL. For final academic use, check the latest paper/repo version and license before making strong claims about openness."
-    }
+  "fields_added": [
+    "category",
+    "task_tags",
+    "paper_url",
+    "code_url",
+    "weights_url",
+    "project_url",
+    "source_provenance",
+    "review_status_label"
   ],
-  "status_definitions": {
-    "seed_verified": "Curated detailed entry from the existing workbook. Still recommended to check latest paper/repo before publication.",
-    "seed_specialized": "Curated entry from VLM/MLLM sheet. Specialized language-capable or grounding model.",
-    "watchlist_unverified": "Registry/watchlist item. Needs source-paper verification before promotion to catalogue.",
-    "candidate_auto_extracted": "New submission drafted by automation but not reviewed.",
-    "verified": "Human-reviewed entry approved for public catalogue."
-  }
+  "source_note": "Seeded from uploaded workbook. Links cross-checked where possible against Awesome Remote Sensing Foundation Models README."
 }

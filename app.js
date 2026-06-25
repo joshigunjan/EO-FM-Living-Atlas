@@ -1,25 +1,26 @@
 const state = {
   data: [],
-  filtered: []
+  filtered: [],
+  selectedId: null
 };
 
 const els = {
   stats: document.getElementById("stats"),
   search: document.getElementById("search"),
-  scopeFilter: document.getElementById("scopeFilter"),
+  categoryFilter: document.getElementById("categoryFilter"),
   opennessFilter: document.getElementById("opennessFilter"),
   modalityFilter: document.getElementById("modalityFilter"),
+  taskFilter: document.getElementById("taskFilter"),
   resetBtn: document.getElementById("resetBtn"),
+  clearSelection: document.getElementById("clearSelection"),
   tbody: document.querySelector("#catalogueTable tbody"),
-  details: document.getElementById("details")
+  details: document.getElementById("details"),
+  detailTitle: document.getElementById("detailTitle"),
+  resultCount: document.getElementById("resultCount")
 };
 
 function uniq(arr) {
   return [...new Set(arr.filter(Boolean))].sort((a, b) => a.localeCompare(b));
-}
-
-function tag(text, cls = "") {
-  return `<span class="badge ${cls}">${escapeHtml(text || "unknown")}</span>`;
 }
 
 function escapeHtml(s) {
@@ -28,54 +29,68 @@ function escapeHtml(s) {
   }[c]));
 }
 
-function truncate(s, n = 95) {
+function truncate(s, n = 120) {
   s = String(s ?? "");
   return s.length > n ? s.slice(0, n - 1) + "…" : s;
 }
 
-function buildFilters() {
-  const scopes = uniq(state.data.map(d => d.scope));
-  const openness = uniq(state.data.map(d => d.openness));
-  const modalities = uniq(state.data.flatMap(d => d.modality_tags || []));
+function tag(text, cls = "") {
+  return `<span class="badge ${cls}">${escapeHtml(text || "unknown")}</span>`;
+}
 
-  for (const s of scopes) els.scopeFilter.insertAdjacentHTML("beforeend", `<option value="${escapeHtml(s)}">${escapeHtml(s)}</option>`);
+function linkButton(label, url) {
+  if (!url) return "";
+  return `<a class="link-pill" href="${escapeHtml(url)}" target="_blank" rel="noreferrer">${escapeHtml(label)}</a>`;
+}
+
+function buildFilters() {
+  const categories = uniq(state.data.map(d => d.category));
+  const openness = uniq(state.data.map(d => d.openness_label || d.openness));
+  const modalities = uniq(state.data.flatMap(d => d.modality_tags || []));
+  const tasks = uniq(state.data.flatMap(d => d.task_tags || []));
+
+  for (const s of categories) els.categoryFilter.insertAdjacentHTML("beforeend", `<option value="${escapeHtml(s)}">${escapeHtml(s)}</option>`);
   for (const o of openness) els.opennessFilter.insertAdjacentHTML("beforeend", `<option value="${escapeHtml(o)}">${escapeHtml(o)}</option>`);
   for (const m of modalities) els.modalityFilter.insertAdjacentHTML("beforeend", `<option value="${escapeHtml(m)}">${escapeHtml(m)}</option>`);
+  for (const t of tasks) els.taskFilter.insertAdjacentHTML("beforeend", `<option value="${escapeHtml(t)}">${escapeHtml(t)}</option>`);
 }
 
 function renderStats() {
   const total = state.data.length;
   const open = state.data.filter(d => d.openness === "open").length;
-  const strong = state.data.filter(d => String(d.fm_strength || "").toLowerCase().includes("strong")).length;
-  const vlm = state.data.filter(d => String(d.scope || "").toLowerCase().includes("language")).length;
+  const tasks = uniq(state.data.flatMap(d => d.task_tags || [])).length;
+  const withPaper = state.data.filter(d => d.paper_url).length;
 
   els.stats.innerHTML = `
-    <div class="stat-card"><div class="num">${total}</div><div class="label">Catalogue entries</div></div>
+    <div class="stat-card"><div class="num">${total}</div><div class="label">Structured catalogue entries</div></div>
     <div class="stat-card"><div class="num">${open}</div><div class="label">Marked open</div></div>
-    <div class="stat-card"><div class="num">${strong}</div><div class="label">Strong or strong/emerging</div></div>
-    <div class="stat-card"><div class="num">${vlm}</div><div class="label">Vision-language / MLLM entries</div></div>
+    <div class="stat-card"><div class="num">${tasks}</div><div class="label">Task labels tracked</div></div>
+    <div class="stat-card"><div class="num">${withPaper}</div><div class="label">Original paper links</div></div>
   `;
 }
 
 function rowText(d) {
   return [
-    d.name, d.scope, d.input_modality, d.architecture, d.downstream_tasks,
-    d.training_scale, d.openness_text, d.fm_strength, d.notes, d.primary_source_url,
-    ...(d.modality_tags || []), ...(d.architecture_tags || [])
+    d.name, d.category, d.scope, d.input_modality, d.architecture, d.downstream_tasks,
+    d.training_scale, d.openness_text, d.fm_strength, d.notes, d.paper_url, d.code_url,
+    d.weights_url, d.project_url, d.source_provenance,
+    ...(d.modality_tags || []), ...(d.architecture_tags || []), ...(d.task_tags || [])
   ].join(" ").toLowerCase();
 }
 
 function applyFilters() {
   const q = els.search.value.trim().toLowerCase();
-  const scope = els.scopeFilter.value;
+  const category = els.categoryFilter.value;
   const open = els.opennessFilter.value;
   const mod = els.modalityFilter.value;
+  const task = els.taskFilter.value;
 
   state.filtered = state.data.filter(d => {
     if (q && !rowText(d).includes(q)) return false;
-    if (scope && d.scope !== scope) return false;
-    if (open && d.openness !== open) return false;
+    if (category && d.category !== category) return false;
+    if (open && (d.openness_label || d.openness) !== open) return false;
     if (mod && !(d.modality_tags || []).includes(mod)) return false;
+    if (task && !(d.task_tags || []).includes(task)) return false;
     return true;
   });
   renderTable();
@@ -83,16 +98,22 @@ function applyFilters() {
 
 function renderTable() {
   els.tbody.innerHTML = "";
+  els.resultCount.textContent = `${state.filtered.length} of ${state.data.length} entries shown`;
+
   for (const d of state.filtered) {
     const tr = document.createElement("tr");
+    if (d.id === state.selectedId) tr.classList.add("selected");
+    const taskChips = (d.task_tags || []).slice(0, 5).map(x => tag(x, "task")).join("");
+    const moreTasks = (d.task_tags || []).length > 5 ? `<span class="more">+${(d.task_tags || []).length - 5}</span>` : "";
     tr.innerHTML = `
-      <td class="name">${escapeHtml(d.name)}</td>
+      <td class="name"><span>${escapeHtml(d.name)}</span><small>${escapeHtml(d.category || "")}</small></td>
       <td>${escapeHtml(d.scope)}</td>
-      <td>${(d.modality_tags || []).map(x => tag(x)).join("") || escapeHtml(truncate(d.input_modality, 60))}</td>
-      <td>${(d.architecture_tags || []).map(x => tag(x)).join("") || escapeHtml(truncate(d.architecture, 60))}</td>
-      <td>${tag(d.openness || "unknown", d.openness || "unknown")}</td>
-      <td>${escapeHtml(d.review_status)}</td>
-      <td>${d.primary_source_url ? `<a href="${escapeHtml(d.primary_source_url)}" target="_blank" rel="noreferrer">source</a>` : ""}</td>
+      <td>${(d.modality_tags || []).map(x => tag(x)).join("") || escapeHtml(truncate(d.input_modality, 80))}</td>
+      <td>${(d.architecture_tags || []).map(x => tag(x, "arch")).join("") || escapeHtml(truncate(d.architecture, 80))}</td>
+      <td class="tasks-cell">${taskChips}${moreTasks}<div class="task-preview">${escapeHtml(truncate(d.downstream_tasks, 125))}</div></td>
+      <td>${tag(d.openness_label || d.openness || "unknown", d.openness || "unknown")}</td>
+      <td class="links-cell">${linkButton("Paper", d.paper_url)}${linkButton("Code", d.code_url)}${linkButton("Weights", d.weights_url)}${linkButton("Project", d.project_url)}</td>
+      <td>${escapeHtml(d.review_status_label || d.review_status)}</td>
     `;
     tr.addEventListener("click", () => renderDetails(d));
     els.tbody.appendChild(tr);
@@ -100,21 +121,34 @@ function renderTable() {
 }
 
 function renderDetails(d) {
+  state.selectedId = d.id;
+  els.detailTitle.textContent = d.name;
   els.details.classList.remove("empty");
+  const tasks = (d.task_tags || []).map(x => tag(x, "task")).join("") || "No extracted task tags yet.";
   els.details.innerHTML = `
-    <h3>${escapeHtml(d.name)}</h3>
+    <div class="detail-actions">${linkButton("Original paper", d.paper_url)}${linkButton("Code", d.code_url)}${linkButton("Weights", d.weights_url)}${linkButton("Project", d.project_url)}</div>
+    <div class="detail-section"><h3>Scientific scope</h3><p>${escapeHtml(d.scope)}</p></div>
+    <div class="detail-section"><h3>Modalities</h3><p>${escapeHtml(d.input_modality)}</p><div>${(d.modality_tags || []).map(x => tag(x)).join("")}</div></div>
+    <div class="detail-section"><h3>Architecture</h3><p>${escapeHtml(d.architecture)}</p><div>${(d.architecture_tags || []).map(x => tag(x, "arch")).join("")}</div></div>
+    <div class="detail-section"><h3>Downstream tasks</h3><div class="task-strip">${tasks}</div><p>${escapeHtml(d.downstream_tasks)}</p></div>
+    <div class="detail-section"><h3>Training scale / representation</h3><p>${escapeHtml(d.training_scale)}</p></div>
     <div class="detail-grid">
-      <div class="detail-key">Scope</div><div>${escapeHtml(d.scope)}</div>
-      <div class="detail-key">Input modality</div><div>${escapeHtml(d.input_modality)}</div>
-      <div class="detail-key">Architecture</div><div>${escapeHtml(d.architecture)}</div>
-      <div class="detail-key">Tasks</div><div>${escapeHtml(d.downstream_tasks)}</div>
-      <div class="detail-key">Training scale</div><div>${escapeHtml(d.training_scale)}</div>
-      <div class="detail-key">Openness</div><div>${escapeHtml(d.openness_text)}</div>
-      <div class="detail-key">FM strength</div><div>${escapeHtml(d.fm_strength)}</div>
+      <div class="detail-key">Openness</div><div>${escapeHtml(d.openness_text || d.openness_label)}</div>
+      <div class="detail-key">Status</div><div>${escapeHtml(d.review_status_label || d.review_status)}</div>
+      <div class="detail-key">Strength</div><div>${escapeHtml(d.fm_strength)}</div>
       <div class="detail-key">Notes</div><div>${escapeHtml(d.notes)}</div>
-      <div class="detail-key">Source</div><div>${d.primary_source_url ? `<a href="${escapeHtml(d.primary_source_url)}" target="_blank" rel="noreferrer">${escapeHtml(d.primary_source_url)}</a>` : ""}</div>
+      <div class="detail-key">Provenance</div><div>${escapeHtml(d.source_provenance || "")}</div>
     </div>
   `;
+  renderTable();
+}
+
+function clearDetails() {
+  state.selectedId = null;
+  els.detailTitle.textContent = "No model selected";
+  els.details.className = "details empty";
+  els.details.textContent = "Click a row. Details open here, next to the table, so you do not have to scroll to the bottom.";
+  renderTable();
 }
 
 async function init() {
@@ -125,17 +159,19 @@ async function init() {
   renderStats();
   renderTable();
 
-  [els.search, els.scopeFilter, els.opennessFilter, els.modalityFilter].forEach(el => {
+  [els.search, els.categoryFilter, els.opennessFilter, els.modalityFilter, els.taskFilter].forEach(el => {
     el.addEventListener("input", applyFilters);
     el.addEventListener("change", applyFilters);
   });
   els.resetBtn.addEventListener("click", () => {
     els.search.value = "";
-    els.scopeFilter.value = "";
+    els.categoryFilter.value = "";
     els.opennessFilter.value = "";
     els.modalityFilter.value = "";
+    els.taskFilter.value = "";
     applyFilters();
   });
+  els.clearSelection.addEventListener("click", clearDetails);
 }
 
 init().catch(err => {

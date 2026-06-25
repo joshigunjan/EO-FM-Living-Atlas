@@ -1,11 +1,13 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "title": "EO-FM Atlas catalogue entry",
+  "title": "EO-FM Living Atlas catalogue entry",
   "type": "object",
   "required": [
     "id",
     "name",
     "scope",
+    "category",
+    "downstream_tasks",
     "review_status"
   ],
   "properties": {
@@ -15,10 +17,10 @@
     "name": {
       "type": "string"
     },
-    "scope": {
+    "category": {
       "type": "string"
     },
-    "source_sheet": {
+    "scope": {
       "type": "string"
     },
     "input_modality": {
@@ -39,6 +41,12 @@
         "type": "string"
       }
     },
+    "task_tags": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
     "downstream_tasks": {
       "type": "string"
     },
@@ -54,22 +62,34 @@
         "unknown"
       ]
     },
-    "openness_text": {
-      "type": "string"
-    },
-    "fm_strength": {
-      "type": "string"
-    },
-    "notes": {
-      "type": "string"
-    },
-    "primary_source_url": {
+    "openness_label": {
       "type": "string"
     },
     "review_status": {
       "type": "string"
     },
-    "last_updated": {
+    "review_status_label": {
+      "type": "string"
+    },
+    "paper_url": {
+      "type": "string"
+    },
+    "code_url": {
+      "type": "string"
+    },
+    "weights_url": {
+      "type": "string"
+    },
+    "project_url": {
+      "type": "string"
+    },
+    "source_provenance": {
+      "type": "string"
+    },
+    "registry_url": {
+      "type": "string"
+    },
+    "notes": {
       "type": "string"
     }
   }
