@@ -1,5 +1,7 @@
 # EO-FM Living Atlas
 
+Editorial-clean version with balanced page headers and shorter public copy.
+
 EO-FM Living Atlas is an interactive catalogue of Earth observation and remote-sensing foundation models, benchmarks, and related resources.
 
 The catalogue tracks more than paper titles. Each entry is structured by:
