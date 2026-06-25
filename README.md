@@ -1,6 +1,6 @@
 # EO-FM Living Atlas
 
-EO-FM Living Atlas is a community-maintained catalogue of Earth observation foundation models, benchmarks, datasets, and related resources.
+EO-FM Living Atlas is a curated living catalogue of Earth observation foundation models, benchmarks, datasets, and related resources.
 
 Each entry records modalities, architecture, modelling paradigm, downstream tasks, openness, and direct links to papers, code, weights, and project pages where available.
 
@@ -8,7 +8,7 @@ Each entry records modalities, architecture, modelling paradigm, downstream task
 
 - `index.html`: searchable catalogue
 - `landscape.html`: interactive landscape map
-- `submit.html`: community submission route
+- `submit.html`: paper submission route
 - `method.html`: scope, fields, and plotting rules
 
 ## Data
@@ -36,7 +36,7 @@ Enable Pages from the repository root on the `main` branch. The site should be a
 
 ## Submission workflow
 
-The `Submit a paper` page links to a GitHub Issue Form. Suggested entries should include primary paper, code, project, and weight links wherever possible, together with modalities, architecture, modelling paradigm, and named downstream tasks.
+The `Submit a paper` page links to a GitHub Issue Form. Suggested entries should include primary paper, code, project, and weight links wherever possible, together with modalities, architecture, modelling paradigm, and named downstream tasks. Submitted entries remain candidates until checked against primary sources.
 
 ## Design asset
 

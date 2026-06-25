@@ -29,5 +29,7 @@
     "y": "reported_downstream_task_count",
     "note": "Default landscape uses explicit curated plotting fields rather than inferred tag counts."
   },
-  "latest_update": "Added/verified OlmoEarth catalogue entry."
+  "latest_update": "Added/verified OlmoEarth catalogue entry.",
+  "description": "A curated living catalogue of Earth observation foundation models, benchmarks, datasets, and related resources.",
+  "positioning": "Curated living companion resource for EO foundation model surveys."
 }
