@@ -18,9 +18,9 @@
       </div>
     </nav>
     <div class="hero-content">
-      <p class="eyebrow">Interactive model landscape</p>
-      <h1>Explore EO foundation models through configurable axes and task filters.</h1>
-      <p class="subtitle">The default view maps modality complexity against downstream-task coverage. Use the axis controls inside the chart card to change the comparison.</p>
+      <p class="eyebrow">Landscape</p>
+      <h1>Interactive model landscape.</h1>
+      <p class="subtitle">Choose X and Y to compare models.</p>
     </div>
   </header>
 
@@ -36,7 +36,7 @@
         <label class="check"><input id="showLabels" type="checkbox"> Show labels</label>
         <button id="landscapeReset">Reset</button>
       </div>
-      <div id="axisHint" class="hint">Default view: x-axis = modality complexity tier; y-axis = downstream-task coverage. Click any point to inspect the model.</div>
+      <div id="axisHint" class="hint">Default: modality complexity × downstream-task coverage.</div>
     </section>
 
     <section class="landscape-layout improved-landscape-layout">
@@ -79,13 +79,10 @@
       </aside>
     </section>
 
-    <section class="panel">
-      <h2>How to read this map</h2>
-      <p>The landscape is exploratory, not a ranking. Colors encode release or availability status. Shapes encode the dominant modelling paradigm. The x- and y-axes can be changed interactively to compare modality breadth, modality complexity, task coverage, architecture breadth, openness, or source-link availability.</p>
-    </section>
+    <section class="panel compact-note"><b>Note.</b> Exploratory map, not a ranking. Color shows availability. Shape shows modelling paradigm.</section>
   </main>
 
-  <footer><p>EO-FM Living Atlas — a community-maintained resource for Earth observation foundation models.</p></footer>
+  <footer><p>EO-FM Living Atlas</p></footer>
   <script src="landscape.js"></script>
 </body>
 </html>

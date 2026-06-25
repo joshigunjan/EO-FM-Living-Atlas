@@ -19,40 +19,31 @@
     </nav>
     <div class="hero-content">
       <p class="eyebrow">Method</p>
-      <h1>How entries are organized.</h1>
+      <h1>Catalogue method.</h1>
+      <p class="subtitle">Scope, fields, and link policy.</p>
     </div>
   </header>
   <main class="container">
-    <section class="panel">
-      <h2>Scope</h2>
-      <p>The atlas focuses on foundation-model research for Earth observation and remote sensing. It includes visual, multimodal, SAR/radar, spectral and hyperspectral, Earth-system, generative, vision-language, MLLM, and benchmark-oriented works when they contribute to the EO foundation-model ecosystem.</p>
+    <section class="method-grid">
+      <article class="panel method-card">
+        <h2>Scope</h2>
+        <p>EO and remote-sensing foundation models, benchmarks, datasets, agents, and vision-language systems.</p>
+      </article>
+      <article class="panel method-card">
+        <h2>Fields</h2>
+        <p>Each row records scope, modality, architecture, paradigm, tasks, openness, and source links.</p>
+      </article>
+      <article class="panel method-card">
+        <h2>Links</h2>
+        <p>Paper, code, project, and weight links point to primary sources whenever available.</p>
+      </article>
+      <article class="panel method-card">
+        <h2>Tasks</h2>
+        <p>Tasks are recorded as specific labels such as land-cover mapping, change detection, VQA, retrieval, or regression.</p>
+      </article>
     </section>
-    <section class="panel">
-      <h2>What each row records</h2>
-      <p>Each catalogue entry is organized around scientific and practical comparison fields: model scope, input modalities, architecture family, downstream tasks, openness, and direct source links. The goal is to make it easy to compare what a model actually supports rather than only listing its name and paper title.</p>
-    </section>
-    <section class="panel">
-      <h2>Link policy</h2>
-      <p>The catalogue prioritizes direct links to the original paper, official code repository, official project page, and model weights. External registries can be useful for cross-checking, but the table itself should point readers to the primary sources.</p>
-    </section>
-    <section class="panel">
-      <h2>Downstream-task policy</h2>
-      <p>Downstream tasks are recorded as specifically as possible. For example, instead of writing only “segmentation,” the catalogue should indicate whether the paper reports land-cover segmentation, flood mapping, crop-type mapping, building/change detection, burn-scar mapping, visual question answering, captioning, retrieval, regression, or other named tasks.</p>
-    </section>
-    <section class="panel">
-      <h2>Minimum fields for a complete row</h2>
-      <ul>
-        <li>Model or benchmark name</li>
-        <li>Original paper link</li>
-        <li>Model scope and category</li>
-        <li>Input modalities and sensors where available</li>
-        <li>Architecture family</li>
-        <li>Named downstream tasks</li>
-        <li>Code, project, and weight links where available</li>
-        <li>Openness and caveats</li>
-      </ul>
-    </section>
+    <section class="panel compact-note"><b>Complete row:</b> name, paper link, scope, modalities, architecture, paradigm, tasks, openness, and source links.</section>
   </main>
-  <footer><p>EO-FM Living Atlas — a community-maintained resource for Earth observation foundation models.</p></footer>
+  <footer><p>EO-FM Living Atlas</p></footer>
 </body>
 </html>

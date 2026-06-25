@@ -49,3 +49,11 @@ The Landscape page uses color for release/availability and marker shape for the 
 ## Modelling paradigm field
 
 Each catalogue entry now includes `modelling_paradigm_key` and `modelling_paradigm`. Marker shapes on the Landscape page use this explicit field rather than relying only on automatic inference. Edit these fields directly when a model family needs correction.
+
+
+Update v9: shortened the Landscape page intro and axis hint text.
+
+
+## v11 update
+
+Concise editorial pass across Catalogue, Landscape, Submit, and Method pages. Hero copy and method text were reduced for a cleaner public-facing site.
