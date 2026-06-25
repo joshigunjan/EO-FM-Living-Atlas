@@ -1,8 +1,8 @@
 # EO-FM Living Atlas
 
-A structured, interactive catalogue of Earth observation and remote-sensing foundation models.
+EO-FM Living Atlas is an interactive catalogue of Earth observation and remote-sensing foundation models, benchmarks, and related resources.
 
-This version is designed to go beyond an awesome-list format. It keeps original paper/code/weight links but also tracks:
+The catalogue tracks more than paper titles. Each entry is structured by:
 
 - Scientific scope
 - Model category
@@ -10,21 +10,20 @@ This version is designed to go beyond an awesome-list format. It keeps original 
 - Architecture family
 - Specific downstream tasks
 - Openness of code and weights
-- Review status
+- Direct paper, code, weight, and project links
 - Notes and caveats
+
+## Website pages
+
+- `index.html`: searchable catalogue
+- `submit.html`: paper submission route
+- `method.html`: catalogue scope and field definitions
 
 ## Data files
 
 - `data/catalogue.json`: website data source
 - `data/catalogue.csv`: editable/exportable catalogue table
-- `data/watchlist.json`: broader registry/watchlist
 - `schema/catalogue.schema.json`: expected structured fields
-
-## Status labels
-
-- `Curated seed`: manually curated seed entry from the initial workbook.
-- `Specialized seed`: manually curated seed entry from a specialized subgroup, usually VLM/MLLM.
-- `Candidate`: submitted or automatically discovered entry awaiting human review.
 
 ## GitHub Pages
 
@@ -34,4 +33,9 @@ Enable Pages from the repository root on the `main` branch. The site should be a
 
 ## Submission workflow
 
-The `Submit a paper` page links to a GitHub Issue Form. Submitted papers should become candidate entries first, then be manually reviewed before appearing as verified catalogue rows.
+The `Submit a paper` page links to a GitHub Issue Form. Suggested entries should include primary paper, code, project, and weight links wherever possible, together with modalities, architecture, and named downstream tasks.
+
+
+## Design assets
+
+The homepage uses `assets/hero-eo-layers.png` as a multimodal Earth observation background representing optical, SAR, DEM, and ERA5-style layers.

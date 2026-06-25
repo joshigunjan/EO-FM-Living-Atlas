@@ -12,47 +12,46 @@
       <div class="brand">EO-FM Living Atlas</div>
       <div class="links">
         <a href="index.html">Catalogue</a>
-        <a href="watchlist.html">Watchlist</a>
         <a href="submit.html">Submit a paper</a>
         <a href="method.html">Method</a>
       </div>
     </nav>
     <div class="hero-content">
       <p class="eyebrow">Method</p>
-      <h1>How entries are structured and verified.</h1>
+      <h1>How entries are organized.</h1>
     </div>
   </header>
   <main class="container">
     <section class="panel">
       <h2>Scope</h2>
-      <p>The atlas focuses on Earth observation and remote-sensing foundation models, including visual, multimodal, SAR/radar, spectral/hyperspectral, Earth-system, and vision-language/MLLM models. Benchmarks and datasets are tracked separately in the watchlist until converted into full structured entries.</p>
+      <p>The atlas focuses on foundation-model research for Earth observation and remote sensing. It includes visual, multimodal, SAR/radar, spectral and hyperspectral, Earth-system, generative, vision-language, MLLM, and benchmark-oriented works when they contribute to the EO foundation-model ecosystem.</p>
     </section>
     <section class="panel">
-      <h2>What makes this different from an awesome list?</h2>
-      <p>An awesome list usually records abbreviation, title, paper, code, and weights. This atlas keeps those links but adds scientific structure: scope, modalities, architecture family, downstream tasks, training scale, openness, caveats, and review status.</p>
-    </section>
-    <section class="panel">
-      <h2>Status labels</h2>
-      <p><b>Curated seed</b> means the row comes from the manually curated seed workbook and is treated as part of the initial verified catalogue. <b>Specialized seed</b> means the row is included from the seed workbook but belongs to a specialized subgroup, usually vision-language or MLLM models. <b>Candidate</b> means a submitted or automatically discovered entry that still needs human review.</p>
+      <h2>What each row records</h2>
+      <p>Each catalogue entry is organized around scientific and practical comparison fields: model scope, input modalities, architecture family, downstream tasks, openness, and direct source links. The goal is to make it easy to compare what a model actually supports rather than only listing its name and paper title.</p>
     </section>
     <section class="panel">
       <h2>Link policy</h2>
-      <p>Rows should link to original papers, project pages, code repositories, and model weights, not just to another registry. External registries such as Awesome Remote Sensing Foundation Models are used as provenance and cross-checking sources for paper/code/weight links.</p>
+      <p>The catalogue prioritizes direct links to the original paper, official code repository, official project page, and model weights. External registries can be useful for cross-checking, but the table itself should point readers to the primary sources.</p>
     </section>
     <section class="panel">
-      <h2>Minimum fields for a verified row</h2>
+      <h2>Downstream-task policy</h2>
+      <p>Downstream tasks are recorded as specifically as possible. For example, instead of writing only “segmentation,” the catalogue should indicate whether the paper reports land-cover segmentation, flood mapping, crop-type mapping, building/change detection, burn-scar mapping, visual question answering, captioning, retrieval, regression, or other named tasks.</p>
+    </section>
+    <section class="panel">
+      <h2>Minimum fields for a complete row</h2>
       <ul>
-        <li>Model name and paper title</li>
+        <li>Model or benchmark name</li>
         <li>Original paper link</li>
-        <li>Scope and model category</li>
+        <li>Model scope and category</li>
         <li>Input modalities and sensors where available</li>
         <li>Architecture family</li>
         <li>Named downstream tasks</li>
-        <li>Openness: code, weights, data, or closed/unclear</li>
-        <li>Notes and caveats</li>
+        <li>Code, project, and weight links where available</li>
+        <li>Openness and caveats</li>
       </ul>
     </section>
   </main>
-  <footer><p>EO-FM Living Atlas.</p></footer>
+  <footer><p>EO-FM Living Atlas — a community-maintained resource for Earth observation foundation models.</p></footer>
 </body>
 </html>

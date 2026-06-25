@@ -38,9 +38,10 @@ function tag(text, cls = "") {
   return `<span class="badge ${cls}">${escapeHtml(text || "unknown")}</span>`;
 }
 
-function linkButton(label, url) {
-  if (!url) return "";
-  return `<a class="link-pill" href="${escapeHtml(url)}" target="_blank" rel="noreferrer">${escapeHtml(label)}</a>`;
+function linkButton(label, url, compact = false) {
+  if (!url) return `<span class="empty-link">—</span>`;
+  const text = compact ? "Open" : label;
+  return `<a class="link-pill" href="${escapeHtml(url)}" target="_blank" rel="noreferrer">${escapeHtml(text)}</a>`;
 }
 
 function buildFilters() {
@@ -57,15 +58,15 @@ function buildFilters() {
 
 function renderStats() {
   const total = state.data.length;
-  const open = state.data.filter(d => d.openness === "open").length;
+  const openish = state.data.filter(d => ["open", "partial"].includes(d.openness)).length;
   const tasks = uniq(state.data.flatMap(d => d.task_tags || [])).length;
   const withPaper = state.data.filter(d => d.paper_url).length;
 
   els.stats.innerHTML = `
-    <div class="stat-card"><div class="num">${total}</div><div class="label">Structured catalogue entries</div></div>
-    <div class="stat-card"><div class="num">${open}</div><div class="label">Marked open</div></div>
-    <div class="stat-card"><div class="num">${tasks}</div><div class="label">Task labels tracked</div></div>
-    <div class="stat-card"><div class="num">${withPaper}</div><div class="label">Original paper links</div></div>
+    <div class="stat-card"><div class="num">${total}</div><div class="label">Catalogue entries</div></div>
+    <div class="stat-card"><div class="num">${openish}</div><div class="label">Open or partly open</div></div>
+    <div class="stat-card"><div class="num">${tasks}</div><div class="label">Downstream task labels</div></div>
+    <div class="stat-card"><div class="num">${withPaper}</div><div class="label">Direct paper links</div></div>
   `;
 }
 
@@ -73,7 +74,7 @@ function rowText(d) {
   return [
     d.name, d.category, d.scope, d.input_modality, d.architecture, d.downstream_tasks,
     d.training_scale, d.openness_text, d.fm_strength, d.notes, d.paper_url, d.code_url,
-    d.weights_url, d.project_url, d.source_provenance,
+    d.weights_url, d.project_url,
     ...(d.modality_tags || []), ...(d.architecture_tags || []), ...(d.task_tags || [])
   ].join(" ").toLowerCase();
 }
@@ -112,10 +113,15 @@ function renderTable() {
       <td>${(d.architecture_tags || []).map(x => tag(x, "arch")).join("") || escapeHtml(truncate(d.architecture, 80))}</td>
       <td class="tasks-cell">${taskChips}${moreTasks}<div class="task-preview">${escapeHtml(truncate(d.downstream_tasks, 125))}</div></td>
       <td>${tag(d.openness_label || d.openness || "unknown", d.openness || "unknown")}</td>
-      <td class="links-cell">${linkButton("Paper", d.paper_url)}${linkButton("Code", d.code_url)}${linkButton("Weights", d.weights_url)}${linkButton("Project", d.project_url)}</td>
-      <td>${escapeHtml(d.review_status_label || d.review_status)}</td>
+      <td class="single-link">${linkButton("Paper", d.paper_url, true)}</td>
+      <td class="single-link">${linkButton("Code", d.code_url, true)}</td>
+      <td class="single-link">${linkButton("Weights", d.weights_url, true)}</td>
+      <td class="single-link">${linkButton("Project", d.project_url, true)}</td>
     `;
-    tr.addEventListener("click", () => renderDetails(d));
+    tr.addEventListener("click", (ev) => {
+      if (ev.target.closest("a")) return;
+      renderDetails(d);
+    });
     els.tbody.appendChild(tr);
   }
 }
@@ -124,9 +130,9 @@ function renderDetails(d) {
   state.selectedId = d.id;
   els.detailTitle.textContent = d.name;
   els.details.classList.remove("empty");
-  const tasks = (d.task_tags || []).map(x => tag(x, "task")).join("") || "No extracted task tags yet.";
+  const tasks = (d.task_tags || []).map(x => tag(x, "task")).join("") || "No task tags available yet.";
   els.details.innerHTML = `
-    <div class="detail-actions">${linkButton("Original paper", d.paper_url)}${linkButton("Code", d.code_url)}${linkButton("Weights", d.weights_url)}${linkButton("Project", d.project_url)}</div>
+    <div class="detail-actions">${linkButton("Original paper", d.paper_url)}${linkButton("Code", d.code_url)}${linkButton("Weights", d.weights_url)}${linkButton("Project page", d.project_url)}</div>
     <div class="detail-section"><h3>Scientific scope</h3><p>${escapeHtml(d.scope)}</p></div>
     <div class="detail-section"><h3>Modalities</h3><p>${escapeHtml(d.input_modality)}</p><div>${(d.modality_tags || []).map(x => tag(x)).join("")}</div></div>
     <div class="detail-section"><h3>Architecture</h3><p>${escapeHtml(d.architecture)}</p><div>${(d.architecture_tags || []).map(x => tag(x, "arch")).join("")}</div></div>
@@ -134,10 +140,8 @@ function renderDetails(d) {
     <div class="detail-section"><h3>Training scale / representation</h3><p>${escapeHtml(d.training_scale)}</p></div>
     <div class="detail-grid">
       <div class="detail-key">Openness</div><div>${escapeHtml(d.openness_text || d.openness_label)}</div>
-      <div class="detail-key">Status</div><div>${escapeHtml(d.review_status_label || d.review_status)}</div>
       <div class="detail-key">Strength</div><div>${escapeHtml(d.fm_strength)}</div>
       <div class="detail-key">Notes</div><div>${escapeHtml(d.notes)}</div>
-      <div class="detail-key">Provenance</div><div>${escapeHtml(d.source_provenance || "")}</div>
     </div>
   `;
   renderTable();
@@ -145,9 +149,9 @@ function renderDetails(d) {
 
 function clearDetails() {
   state.selectedId = null;
-  els.detailTitle.textContent = "No model selected";
+  els.detailTitle.textContent = "No entry selected";
   els.details.className = "details empty";
-  els.details.textContent = "Click a row. Details open here, next to the table, so you do not have to scroll to the bottom.";
+  els.details.textContent = "Click a row. Details open here next to the table.";
   renderTable();
 }
 

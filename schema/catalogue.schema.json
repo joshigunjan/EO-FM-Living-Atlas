@@ -7,8 +7,7 @@
     "name",
     "scope",
     "category",
-    "downstream_tasks",
-    "review_status"
+    "downstream_tasks"
   ],
   "properties": {
     "id": {
@@ -65,12 +64,6 @@
     "openness_label": {
       "type": "string"
     },
-    "review_status": {
-      "type": "string"
-    },
-    "review_status_label": {
-      "type": "string"
-    },
     "paper_url": {
       "type": "string"
     },
@@ -81,12 +74,6 @@
       "type": "string"
     },
     "project_url": {
-      "type": "string"
-    },
-    "source_provenance": {
-      "type": "string"
-    },
-    "registry_url": {
       "type": "string"
     },
     "notes": {

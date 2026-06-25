@@ -12,15 +12,14 @@
       <div class="brand">EO-FM Living Atlas</div>
       <div class="links">
         <a href="index.html">Catalogue</a>
-        <a href="watchlist.html">Watchlist</a>
         <a href="submit.html">Submit a paper</a>
         <a href="method.html">Method</a>
       </div>
     </nav>
     <div class="hero-content">
-      <p class="eyebrow">Structured atlas, not just an awesome list</p>
-      <h1>Earth observation foundation models mapped by modality, architecture, openness, and downstream tasks.</h1>
-      <p class="subtitle">A living, human-reviewed catalogue seeded from a curated workbook and enriched with original paper, code, and weight links where available.</p>
+      <p class="eyebrow">Living catalogue for Earth observation foundation models</p>
+      <h1>Explore EO foundation models by modality, architecture, openness, and downstream tasks.</h1>
+      <p class="subtitle">A searchable catalogue with direct links to original papers, code repositories, project pages, and model weights where available.</p>
     </div>
   </header>
 
@@ -29,7 +28,7 @@
 
     <section class="panel controls-panel">
       <div class="toolbar">
-        <input id="search" type="search" placeholder="Search model, modality, task, architecture, dataset, paper...">
+        <input id="search" type="search" placeholder="Search model, modality, task, architecture, sensor, dataset, paper...">
         <select id="categoryFilter"><option value="">All categories</option></select>
         <select id="opennessFilter"><option value="">All openness</option></select>
         <select id="modalityFilter"><option value="">All modalities</option></select>
@@ -37,7 +36,7 @@
         <button id="resetBtn">Reset</button>
       </div>
       <div class="hint">
-        Try: <b>SAR</b>, <b>change detection</b>, <b>crop-type mapping</b>, <b>VQA</b>, <b>MAE</b>, <b>open weights</b>, or <b>hyperspectral</b>.
+        Try: <b>SAR</b>, <b>hyperspectral</b>, <b>crop-type mapping</b>, <b>change detection</b>, <b>VQA</b>, <b>masked autoencoder</b>, or <b>open weights</b>.
       </div>
     </section>
 
@@ -60,8 +59,10 @@
                 <th>Architecture</th>
                 <th>Downstream tasks</th>
                 <th>Open</th>
-                <th>Links</th>
-                <th>Status</th>
+                <th>Paper</th>
+                <th>Code</th>
+                <th>Weights</th>
+                <th>Project</th>
               </tr>
             </thead>
             <tbody></tbody>
@@ -72,17 +73,17 @@
       <aside class="panel detail-panel">
         <div class="detail-title-row">
           <div>
-            <p class="eyebrow dark">Selected entry</p>
-            <h2 id="detailTitle">No model selected</h2>
+            <p class="eyebrow dark">Entry details</p>
+            <h2 id="detailTitle">No entry selected</h2>
           </div>
         </div>
-        <div id="details" class="details empty">Click a row. Details open here, next to the table, so you do not have to scroll to the bottom.</div>
+        <div id="details" class="details empty">Click a row. Details open here next to the table.</div>
       </aside>
     </section>
   </main>
 
   <footer>
-    <p>EO-FM Living Atlas. Seeded from a curated workbook; submissions should be reviewed before becoming public catalogue entries.</p>
+    <p>EO-FM Living Atlas — a community-maintained resource for Earth observation foundation models.</p>
   </footer>
 
   <script src="app.js"></script>

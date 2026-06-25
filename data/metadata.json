@@ -1,17 +1,25 @@
 {
   "project": "EO-FM Living Atlas",
-  "version": "v1-structured",
+  "version": "v2-public-catalogue",
   "generated_on": "2026-06-25",
   "catalogue_entries": 74,
-  "fields_added": [
+  "public_pages": [
+    "Catalogue",
+    "Submit a paper",
+    "Method"
+  ],
+  "primary_fields": [
+    "name",
+    "scope",
     "category",
-    "task_tags",
+    "modalities",
+    "architecture",
+    "downstream_tasks",
+    "openness",
     "paper_url",
     "code_url",
     "weights_url",
-    "project_url",
-    "source_provenance",
-    "review_status_label"
+    "project_url"
   ],
-  "source_note": "Seeded from uploaded workbook. Links cross-checked where possible against Awesome Remote Sensing Foundation Models README."
+  "source_note": "Catalogue rows should point to primary sources: original papers, official code repositories, official project pages, and official weight/model pages where available."
 }
