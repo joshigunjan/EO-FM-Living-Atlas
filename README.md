@@ -8,7 +8,7 @@ Each entry records modalities, architecture, modelling paradigm, downstream task
 
 - `index.html`: searchable catalogue
 - `landscape.html`: interactive landscape map
-- `submit.html`: paper submission route
+- `submit.html`: add-entry route for suggesting models, benchmarks, datasets, or tools
 - `method.html`: scope, fields, and plotting rules
 
 ## Data
@@ -36,7 +36,7 @@ Enable Pages from the repository root on the `main` branch. The site should be a
 
 ## Submission workflow
 
-The `Submit a paper` page links to a GitHub Issue Form. Suggested entries should include primary paper, code, project, and weight links wherever possible, together with modalities, architecture, modelling paradigm, and named downstream tasks. Submitted entries remain candidates until checked against primary sources.
+The `Add entry` page links to a GitHub Issue Form. Suggested entries should include primary paper, code, project, and weight links wherever possible, together with modalities, architecture, modelling paradigm, and named downstream tasks. New entries remain candidates until checked against primary sources.
 
 ## Design asset
 

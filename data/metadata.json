@@ -1,11 +1,12 @@
 {
   "project": "EO-FM Living Atlas",
-  "version": "v16-olmoearth",
+  "version": "v19-add-entry-label",
   "generated_on": "2026-06-25",
   "catalogue_entries": 74,
   "public_pages": [
     "Catalogue",
-    "Submit a paper",
+    "Landscape",
+    "Add entry",
     "Method"
   ],
   "primary_fields": [
@@ -29,7 +30,7 @@
     "y": "reported_downstream_task_count",
     "note": "Default landscape uses explicit curated plotting fields rather than inferred tag counts."
   },
-  "latest_update": "Added/verified OlmoEarth catalogue entry.",
+  "latest_update": "Renamed user-facing contribution route from \u201cSubmit a paper\u201d to \u201cAdd entry\u201d; link buttons use \u201cLink\u201d labels and access labels distinguish open source / partial access / closed source.",
   "description": "A curated living catalogue of Earth observation foundation models, benchmarks, datasets, and related resources.",
   "positioning": "Curated living companion resource for EO foundation model surveys."
 }
