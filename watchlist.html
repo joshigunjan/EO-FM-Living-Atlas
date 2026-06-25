@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>EO-FM Atlas Watchlist</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="hero small">
+    <nav class="nav">
+      <div class="brand">EO-FM Atlas</div>
+      <div class="links">
+        <a href="index.html">Catalogue</a>
+        <a href="watchlist.html">Watchlist</a>
+        <a href="submit.html">Submit a paper</a>
+        <a href="method.html">Method</a>
+      </div>
+    </nav>
+    <div class="hero-content">
+      <p class="eyebrow">Extended registry</p>
+      <h1>Watchlist entries that need verification before promotion.</h1>
+      <p class="subtitle">Use this page to decide what should be checked next.</p>
+    </div>
+  </header>
+  <main class="container">
+    <section class="panel">
+      <div class="toolbar">
+        <input id="search" type="search" placeholder="Search watchlist...">
+        <button id="resetBtn">Reset</button>
+      </div>
+      <div class="table-wrap">
+        <table id="watchTable">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Registry category</th>
+              <th>Notes</th>
+              <th>Status</th>
+              <th>Source</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+  <script>
+    let data = [];
+    const tbody = document.querySelector("#watchTable tbody");
+    const search = document.getElementById("search");
+    const resetBtn = document.getElementById("resetBtn");
+    const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({ "&":"&amp;", "<":"&lt;", ">":"&gt;", '"':"&quot;", "'":"&#039;" }[c]));
+    function render() {
+      const q = search.value.toLowerCase();
+      tbody.innerHTML = "";
+      data.filter(d => [d.name, d.registry_category, d.notes, d.source_url].join(" ").toLowerCase().includes(q))
+        .forEach(d => {
+          const tr = document.createElement("tr");
+          tr.innerHTML = `<td class="name">${esc(d.name)}</td><td>${esc(d.registry_category)}</td><td>${esc(d.notes)}</td><td>${esc(d.review_status)}</td><td>${d.source_url ? `<a href="${esc(d.source_url)}" target="_blank">source</a>` : ""}</td>`;
+          tbody.appendChild(tr);
+        });
+    }
+    fetch("data/watchlist.json").then(r => r.json()).then(j => { data = j; render(); });
+    search.addEventListener("input", render);
+    resetBtn.addEventListener("click", () => { search.value = ""; render(); });
+  </script>
+</body>
+</html>

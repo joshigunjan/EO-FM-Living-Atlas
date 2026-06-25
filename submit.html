@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Submit a paper | EO-FM Atlas</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="hero small">
+    <nav class="nav">
+      <div class="brand">EO-FM Atlas</div>
+      <div class="links">
+        <a href="index.html">Catalogue</a>
+        <a href="watchlist.html">Watchlist</a>
+        <a href="submit.html">Submit a paper</a>
+        <a href="method.html">Method</a>
+      </div>
+    </nav>
+    <div class="hero-content">
+      <p class="eyebrow">Community intake</p>
+      <h1>Do you know a foundation model, benchmark, dataset, or paper that should be included?</h1>
+      <p class="subtitle">Submit a paper link, DOI, arXiv URL, GitHub repo, project page, or LinkedIn post text.</p>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="panel">
+      <h2>Recommended workflow</h2>
+      <p>This static starter site is designed to connect to a GitHub Issue Form. The issue triggers a GitHub Action, which drafts a candidate entry. You review the pull request before it appears in the verified catalogue.</p>
+      <ol>
+        <li>Create the GitHub repository as <code>joshigunjan/EO-FM-Living-Atlas</code>, then enable GitHub Pages.</li>
+        <li>Enable GitHub Pages for the repository.</li>
+        <li>Use the included issue form at <code>.github/ISSUE_TEMPLATE/add-paper.yml</code>.</li>
+        <li>Use the included workflow at <code>.github/workflows/extract-candidate.yml</code> as the automation starting point.</li>
+      </ol>
+      <p>
+        <a class="button-link" href="https://github.com/joshigunjan/EO-FM-Living-Atlas/issues/new?template=add-paper.yml" target="_blank" rel="noreferrer">Submit via GitHub Issue Form</a>
+      </p>
+    </section>
+
+    <section class="panel">
+      <h2>Why review first?</h2>
+      <p>New entries should not be automatically published as verified. The automation should create a candidate row first, because source papers often use different meanings of “foundation model,” “open source,” “benchmark,” and “pretraining scale.”</p>
+    </section>
+  </main>
+</body>
+</html>

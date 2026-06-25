@@ -1,0 +1,76 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "EO-FM Atlas catalogue entry",
+  "type": "object",
+  "required": [
+    "id",
+    "name",
+    "scope",
+    "review_status"
+  ],
+  "properties": {
+    "id": {
+      "type": "string"
+    },
+    "name": {
+      "type": "string"
+    },
+    "scope": {
+      "type": "string"
+    },
+    "source_sheet": {
+      "type": "string"
+    },
+    "input_modality": {
+      "type": "string"
+    },
+    "modality_tags": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "architecture": {
+      "type": "string"
+    },
+    "architecture_tags": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "downstream_tasks": {
+      "type": "string"
+    },
+    "training_scale": {
+      "type": "string"
+    },
+    "openness": {
+      "type": "string",
+      "enum": [
+        "open",
+        "partial",
+        "closed",
+        "unknown"
+      ]
+    },
+    "openness_text": {
+      "type": "string"
+    },
+    "fm_strength": {
+      "type": "string"
+    },
+    "notes": {
+      "type": "string"
+    },
+    "primary_source_url": {
+      "type": "string"
+    },
+    "review_status": {
+      "type": "string"
+    },
+    "last_updated": {
+      "type": "string"
+    }
+  }
+}
